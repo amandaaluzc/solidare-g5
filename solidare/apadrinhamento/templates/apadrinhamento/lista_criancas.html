@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Crianças</title>
+</head>
+<body>
+    <h1>Lista de Crianças</h1>
+
+    <ul>
+        {% for crianca in criancas %}
+            <li>{{ crianca.nome }} - {{ crianca.idade }} anos</li>
+        {% empty %}
+            <li>Nenhuma criança cadastrada.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
