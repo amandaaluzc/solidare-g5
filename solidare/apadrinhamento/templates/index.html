@@ -12,13 +12,13 @@
     <section class="container-pai">
         <section class="navbar">
             <img src="{% static "img\logo.png" %}">
-            <a href="{% static "styles\index.css" %}"><button class="btn-apadrinhar">Quero apadrinhar</button></a>
+            <a href="{% url 'lista_criancas' %}"><button class="btn-apadrinhar">Quero apadrinhar</button></a>
         </section>
         <section class="background">
 
             <section class=texto-back>
-                <p>Ser jogador de futebol não é mais só um sonho Agora, é realidade!"</p>
-                <a href="{% static "styles\index.css" %}"><button class="btn-apadrinhar">Quero apadrinhar</button></a>
+                <p>Ser jogador de futebol não é mais só um sonho. Agora, é realidade!</p>
+                <a href="{% url 'lista_criancas' %}"><button class="btn-apadrinhar">Quero apadrinhar</button></a>
             </section>
             <section class="back-crianca">
                 <img src="{% static "img\crianca.png" %}">
