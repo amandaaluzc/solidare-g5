@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 body {
     margin : 0;
     padding: 0;
@@ -25,19 +28,19 @@ body {
 }
 
 .btn-apadrinhar {
-    width: 16rem;
-    height: 4rem;
+    padding: 2rem 3rem;
     border-radius: 35px;
     background-color: #7ad9bd;
     color: white;
     font-size: 1.3rem;
     font-weight: 400;
     border: none;
+    cursor: pointer;
 }
 
 
 .background {
-    height: 25%;
+    
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -45,19 +48,25 @@ body {
 }
 
 .texto-back {
-    width: 30%;
-    text-align:justify;
+    width: 35%;
+    text-align:left;
     font-size: 4rem;
     display: flex;
     flex-direction: column;
-    margin-left: 7rem;
+    margin-left: 8rem;
     margin-top: 4rem;
     font-weight: 500;
-    color:  #26717e;
+    color: #26717e;
+}
+
+.texto-back .btn-apadrinhar {
+    width: 100%;
+    margin-right: 3rem;
+    font-size: 1.5rem;
 }
 
 .back-crianca{
-    width: 60%;
+    width: 70%;
     height: 40%;
 }
 
@@ -73,6 +82,7 @@ body {
     height: 60%;
     justify-content: center;
     text-align: center;
+    font-family: 'Montserrat' , sans-serif;
 }
 
 .texto-info {
