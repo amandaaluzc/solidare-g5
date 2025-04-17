@@ -7,12 +7,12 @@ falar sobre o projeto
 **Integrantes:**
 
 * [Amanda Luz Chaves](https://github.com/amandaaluzc) - alc2@cesar.school  
-* [Augusto Malheiros](https://github.com/goodguto) - ams10@cesar.school
+* [Augusto Malheiros de Souza](https://github.com/goodguto) - ams10@cesar.school
 * [Brenda Luana Correia Bezerra](https://github.com/brendalu2005) - blcb@cesar.school
 * Caio Vilela - chbv@cesar.school
 * Carolina Alves - cmag@gmail.com
 * Clara Pereira - cplc@cesar.school
-* [Eduardo Albuquerque Alves Barbosa](https://github.com/eduaab) - blcb@cesar.school
+* [Eduardo Albuquerque Alves Barbosa](https://github.com/eduaab) - eaab@cesar.com
 * [Heloisa Barros]() - hbbs@cesar.school
 * [João Carlos Melo Brennand de Souza Mendes](https://github.com/joaocm1804) - jcmbsm@cesar.com
 * [Lucas Menezes Santana](https://github.com/ucasmenezes08) - lms4@cesar.school
@@ -21,8 +21,6 @@ falar sobre o projeto
 
 **Orientador:**  
 * Manuela Beatriz Pedrosa Correia
-
----
 
 ## SRs
 
