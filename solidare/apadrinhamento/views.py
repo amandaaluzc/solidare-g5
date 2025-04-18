@@ -1,5 +1,44 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Crianca
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.db import transaction
+from django.shortcuts import get_object_or_404 
+
+from .forms import PadrinhoRegistrationForm
+from .models import Padrinho
+
+def registrar_padrinho(request):
+    if request.method == "POST":
+        form = PadrinhoRegistrationForm(request.POST)
+        if form.is_valid():
+            try:
+                with transaction.atomic():
+                    # 1) criar usuário
+                    user = User.objects.create_user(
+                        username=form.cleaned_data["email"],   # username = email
+                        email=form.cleaned_data["email"],
+                        password=form.cleaned_data["password1"],
+                        first_name=form.cleaned_data["first_name"],
+                        last_name=form.cleaned_data["last_name"],
+                    )
+
+                    # 2) criar padrinho vinculado
+                    Padrinho.objects.create(
+                        user=user,
+                        telefone=form.cleaned_data["telefone"],
+                        cpf=form.cleaned_data["cpf"],
+                        metodo_pagamento=form.cleaned_data["metodo_pagamento"],
+                    )
+                messages.success(request, "Cadastro realizado com sucesso! Você já pode fazer login.")
+                return redirect("login")   # ajuste para a sua rota de login
+            except Exception:
+                messages.error(request, "Erro inesperado ao salvar. Tente novamente.")
+    else:
+        form = PadrinhoRegistrationForm()
+
+    return render(request, "registrar_padrinho.html", {"form": form})
+
 
 def lista_criancas(request):
     criancas = Crianca.objects.all()
@@ -7,3 +46,7 @@ def lista_criancas(request):
 
 def homepage (request):
     return render (request , 'index.html')
+
+def detalhes_crianca(request, crianca_id):
+    crianca = get_object_or_404(Crianca, id=crianca_id)
+    return render(request, "detalhes_crianca.html", {"crianca": crianca})
