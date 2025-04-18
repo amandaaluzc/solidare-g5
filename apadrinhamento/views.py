@@ -50,3 +50,7 @@ def homepage (request):
 def detalhes_crianca(request, crianca_id):
     crianca = get_object_or_404(Crianca, id=crianca_id)
     return render(request, "detalhes_crianca.html", {"crianca": crianca})
+
+def pagina_exibicao(request):
+    criancas = Crianca.objects.all()
+    return render(request, 'pagina_exibição.html', {'criancas': criancas})
