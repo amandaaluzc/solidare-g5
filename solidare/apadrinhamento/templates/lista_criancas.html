@@ -9,7 +9,11 @@
 
     <ul>
         {% for crianca in criancas %}
-            <li>{{ crianca.nome }} - {{ crianca.idade }} anos</li>
+            <li>
+                <a href="{% url 'detalhes_crianca' crianca.id %}">
+                    {{ crianca.nome }}
+                </a> - {{ crianca.idade }} anos
+            </li>
         {% empty %}
             <li>Nenhuma criança cadastrada.</li>
         {% endfor %}
