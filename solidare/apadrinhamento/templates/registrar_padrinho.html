@@ -1,0 +1,12 @@
+
+
+{% block content %}
+<div class="container">
+  <h2>Cadastro de Padrinho</h2>
+  <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Cadastrar</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 class Crianca(models.Model):
     nome = models.CharField(max_length=100)
@@ -9,13 +11,19 @@ class Crianca(models.Model):
         return self.nome
 
 class Padrinho(models.Model):
-    nome = models.CharField(max_length=100)
-    email = models.EmailField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="padrinho")
     telefone = models.CharField(max_length=20)
-    metodo_pagamento = models.CharField(max_length=100)
+    cpf = models.CharField(max_length=14, unique=True)
+    
+    PAGAMENTO_OPCOES = [
+        ("credit",  "Cartão de crédito"),
+        ("pix",     "PIX"),
+        ("boleto",  "Boleto"),
+    ]
+    metodo_pagamento = models.CharField(max_length=10, choices=PAGAMENTO_OPCOES)
 
     def __str__(self):
-        return self.nome
+        return f"{self.user.get_full_name()} ({self.cpf})"
 
 class Apadrinhamento(models.Model):
     padrinho = models.ForeignKey(Padrinho, on_delete=models.CASCADE)
