@@ -9,6 +9,22 @@
     <link rel="stylesheet" href="{% static 'styles/index.css' %}">
 </head>
 <body>
-    
+    <section class="navbar">
+        <section class="logo">
+            <img src="{% static "img\logo.png" %}">
+        </section>
+        <section class="home-links">
+            <section class="home">
+                <button><a href="{% url 'home' %}"></a>Home</button>
+            </section>
+            <section class="Sobre">
+                <button><a href="#sobre"></a>Sobre</button>
+            </section>
+
+            <section class="sign-in">
+                
+            </section>
+        </section>
+    </section>
 </body>
 </html>
