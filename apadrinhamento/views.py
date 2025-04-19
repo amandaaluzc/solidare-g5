@@ -31,7 +31,7 @@ def registrar_padrinho(request):
                         metodo_pagamento=form.cleaned_data["metodo_pagamento"],
                     )
                 messages.success(request, "Cadastro realizado com sucesso! Você já pode fazer login.")
-                return redirect("login")   # ajuste para a sua rota de login
+                return redirect("home")   # ajuste para a sua rota de login
             except Exception:
                 messages.error(request, "Erro inesperado ao salvar. Tente novamente.")
     else:

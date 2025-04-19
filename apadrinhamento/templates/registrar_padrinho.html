@@ -5,24 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-    <link rel="stylesheet" href="{% static "styles/registrarpadrinhos.css" %}">
+    <link rel="stylesheet" href="{% static 'styles/registrarpadrinhos.css' %}">
 </head>
 <body>
-  <header>
+<header>
     <section class="container-pai">
         <section class="navbar">
             <section class="logo">
-                <img src="{% static "img/logo.png" %}">
+                <img src="{% static 'img/logo.png' %}">
             </section>
             <section class="home-links">
                 <section class="home">
                     <a href="{% url 'home' %}"><button>Home</button></a>
                 </section>
                 <section class="sobre">
-                    <button><a href="#sobre"></a>Sobre</button> 
+                    <button><a href="#sobre"></a>Sobre</button>
                 </section>
                 <section class="sign in">
-                    <button><a href="{% url 'home' %}"></a>Sign in</button>   
+                    <button><a href="{% url 'home' %}"></a>Sign in</button>
                 </section>
                 <section class="sign up">
                     <a href="{% url 'cadastro_padrinho' %}"><button>Sign up</button></a>
@@ -31,64 +31,69 @@
                     <a href="{% url 'pagina_exibicao' %}"><button>Apadrinhe</button></a>
                 </section>
             </section>
-        
         </section>
     </section>
 </header>
-    <main>
 
-      <div class="container">
+<main>
+    <div class="container">
         <div class="form-box">
-          <form>
+            <form method="POST">
+                {% csrf_token %}
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="{{ message.tags }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                {{ form.non_field_errors }}
+
                 <div class="input-group">
-                    <label>Nome:</label>
-                    <input type="text" placeholder="Nome">
+                    {{ form.first_name.label_tag }} {{ form.first_name }}
+                    {{ form.first_name.errors }}
                 </div>
 
                 <div class="input-group">
-                    <label>Sobrenome:</label>
-                    <input type="text" placeholder="Sobrenome">
-                </div>
-                
-                <div class="input-group">
-                  <label>Email:</label>
-                    <input type="email" placeholder="Email">
+                    {{ form.last_name.label_tag }} {{ form.last_name }}
+                    {{ form.last_name.errors }}
                 </div>
 
                 <div class="input-group">
-                    <label>Senha:</label>
-                    <input type="password" placeholder="Senha">
-                  </div>
-                  
-                <div class="input-group">
-                    <label>Confirme a senha:</label>
-                    <input type="password" placeholder="Confirme a senha">
+                    {{ form.email.label_tag }} {{ form.email }}
+                    {{ form.email.errors }}
                 </div>
 
                 <div class="input-group">
-                    <label>Telefone:</label>
-                    <input type="tel" placeholder="Telefone">
+                    {{ form.password1.label_tag }} {{ form.password1 }}
+                    {{ form.password1.errors }}
                 </div>
 
                 <div class="input-group">
-                    <label>CPF:</label>
-                    <input type="text" placeholder="CPF">
+                    {{ form.password2.label_tag }} {{ form.password2 }}
+                    {{ form.password2.errors }}
                 </div>
 
                 <div class="input-group">
-                    <label>Método de pagamento:</label>
-                    <select>
-                        <option value="" disabled selected>Selecione o método de pagamento</option>
-                        <option value="credito">Cartão de Crédito</option>
-                        <option value="debito">Cartão de Débito</option>
-                        <option value="pix">PIX</option>
-                    </select>
-                  </div>
+                    {{ form.telefone.label_tag }} {{ form.telefone }}
+                    {{ form.telefone.errors }}
+                </div>
 
-                  <button type="submit">Finalizar</button>
-                </form>
-              </div>
-            </div>
-          </main>
-          </body>
+                <div class="input-group">
+                    {{ form.cpf.label_tag }} {{ form.cpf }}
+                    {{ form.cpf.errors }}
+                </div>
+
+                <div class="input-group">
+                    {{ form.metodo_pagamento.label_tag }} {{ form.metodo_pagamento }}
+                    {{ form.metodo_pagamento.errors }}
+                </div>
+
+                <button type="submit">Finalizar</button>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
 </html>
