@@ -196,9 +196,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: row;
         }
 
         .container-left {
+            width: 50%;
+            height: 100%;
             margin-right: 3rem;
         }
 
@@ -305,7 +308,9 @@
                                 <img src="{{ crianca.foto.url }}" alt="fotoDaCrianca{{ crianca.nome }}">
                             </section>
                         {% else %}
-                            <section class="placeholder-image-card"></section>
+                            <section class="placeholder-image-card">
+                                <br/>
+                            </section>
                         {% endif %}
                         </section>
                     </section>
