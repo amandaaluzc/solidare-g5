@@ -30,7 +30,7 @@ body {
     margin-right: 30px;
 }
 
-.home-links button{
+.home-links button, .boas-vindas button{
     font-family: sans-serif;
     font-size: 1rem;
     font-weight: 700;
@@ -61,4 +61,41 @@ body {
     background-color: #131313;
     padding: 1.1rem;
     transition-timing-function: ease-in-out;
+}
+
+.crianca{
+    flex: 2;
+}
+
+.img-crianca {
+   width: 80%;
+}
+
+.boas-vindas {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 30px 160px 80px 10px;
+    margin-top: 10px;
+    background-color: rgba(134, 199, 132, 0.438);   
+}
+
+.laco-solidare{
+    flex: 1;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: 500;
+    padding: 0 20px;
+}
+
+.laco-solidare h1{
+    font-size: 4.5rem;
+    letter-spacing: -3px;
+    color: #000000;
+}
+
+.laco-solidare p{
+    font-size: 1.5rem;
+    line-height: 1.8;
+    padding-top: 0px;
 }
