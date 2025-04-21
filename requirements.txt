@@ -2,6 +2,7 @@ asgiref==3.8.1
 Django==5.2
 gunicorn==23.0.0
 packaging==25.0
+pillow==11.2.1
 psycopg2-binary==2.9.10
 python-dotenv==1.1.0
 sqlparse==0.5.3

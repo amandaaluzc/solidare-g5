@@ -6,6 +6,7 @@ class Crianca(models.Model):
     nome = models.CharField(max_length=100)
     idade = models.IntegerField()
     descricao = models.TextField()
+    foto = models.ImageField(upload_to="fotos/", blank=True, null=True)
 
     def __str__(self):
         return self.nome
