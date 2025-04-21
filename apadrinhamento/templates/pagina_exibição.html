@@ -121,6 +121,97 @@
             font-family: sans-serif;
             font-weight: 600;
         }
+
+
+        .modal{
+            display: none;
+            position: fixed;
+            opacity: 1;
+            width: 80%;
+            height: 85%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #c6c1c1;
+            border-radius: 15px;
+            opacity: 1;
+        }
+
+        .modal-content {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            padding: 0.7rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+
+    
+
+        .boxes-modals {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container-left {
+            margin-right: 3rem;
+        }
+
+        .placeholder-image-card {
+            width: 22rem;
+            height: 22rem;
+            background-color: #f0f0f0;
+            margin: 0 auto 15px;
+            border-radius: 8px;
+        }
+
+        .container-right {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            font-size: 1rem;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            white-space: normal;
+            word-break: break-word;
+            line-height: 1.5;
+        }
+
+        .container-right h2 {
+            margin-bottom: 3rem;
+            margin-top: -7rem;
+        }
+
+
+        .btn-apadrinhar {
+            padding: 1rem 2.3rem;
+            background-color: #D9D9D9;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1.6rem;
+            border-radius: 10px;
+        }
+
+
+
     </style>
 </head>
 <body>    
@@ -156,12 +247,61 @@
 
     <div class="grid-container">
         {% for crianca in criancas %}
-        <div class="card">
+        <div class="card" data-id="{{ crianca.id }}">
             <div class="placeholder-image"></div>
             <h5 class="card-title">{{ crianca.nome }}, {{ crianca.idade }}</h5>
         </div>
         {% endfor %}
     </div>
+
+    <section class="modals">
+        {% for crianca in criancas %}
+        <section class="modal" id="modal-{{ crianca.id }}">
+            <section class="modal-content">
+                <button class="btn-close" data-id="{{ crianca.id }}">X</button>
+                <section class="boxes-modals">
+                    <section class="container-left">
+                        <section class="placeholder-image-card"></section>
+                    </section>
     
+                    <section class="container-right">
+                        <h2>{{crianca.nome }}, {{crianca.idade }}</h2>
+                        <p>{{crianca.descricao }}</p>
+                        <p>Apadrinhe esse sonho!</p>
+                        <button class="btn-apadrinhar">Apadrinhar</button>
+                </section>
+               
+                    
+            </section>
+            </section>
+            
+
+            
+
+           
+        </section>
+        {% endfor %}
+
+       
+    </section>
+    
+    <script>
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', () => {
+              const id = card.dataset.id;
+              const modal = document.getElementById(`modal-${id}`);
+              if (modal) modal.style.display = 'flex';
+            });
+          });
+        
+          document.querySelectorAll('.btn-close').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const id = btn.dataset.id;
+              const modal = document.getElementById(`modal-${id}`);
+              if (modal) modal.style.display = 'none';
+            });
+          });
+
+    </script>
 </body>
 </html>
