@@ -19,7 +19,7 @@ falar sobre o projeto
 * Lucas Tavares - ltas@cesar.school
 
 
-**Orientador:**  
+**Orientadora:**  
 * Manuela Beatriz Pedrosa Correia
 
 ## SRs
@@ -50,7 +50,6 @@ falar sobre o projeto
 ![Jira]() 
 
 ### 🐛 Issue/Bug Tracker
-
 
 
 ### 🚀 Deployment
