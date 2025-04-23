@@ -45,7 +45,7 @@ def lista_criancas(request):
     return render(request, 'lista_criancas.html', {'criancas': criancas})
 
 def homepage (request):
-    return render (request , 'index.html')
+    return render (request , 'home.html')
 
 def detalhes_crianca(request, crianca_id):
     crianca = get_object_or_404(Crianca, id=crianca_id)
