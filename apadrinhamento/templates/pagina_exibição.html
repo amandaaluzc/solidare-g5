@@ -1,9 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apadrinhamento</title>
     <style>
 
@@ -38,26 +39,26 @@
             border-radius: 12px;
         }
         
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        body {
+        
+        {% comment %} body {
             font-family: Arial, sans-serif;
             padding: 20px;
         }
-
-                
+        
+        
         .container-pai {
             width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;
         }
-
+        
         .navbar {
             width: 100%;
             height: 7%;
@@ -65,7 +66,7 @@
             display: flex;
             justify-content: space-between;
         }
-
+        
         .home-links{
             display: flex;
             flex-direction: row;
@@ -73,7 +74,7 @@
             align-items: center;
             margin-right: 30px;
         }
-
+        
         .home-links button{
             font-family: sans-serif;
             font-size: 1rem;
@@ -84,29 +85,35 @@
             border: none;
             cursor: pointer;
             background-color: transparent;
-
+            
         }
-
+        
         .apadrinhe button{
             padding: 1rem;
             background-color: #1b1b1b;
             color: #ffffff;
         }
-
-        .logo {
-            margin-left: 30px;
+        
+        {% comment %} .logo img{
+            width: 236px;
         }
-
-        .home-links button:hover{
+        
+        .logo{
+            margin-left: 30px;
+            margin-top: -20px;
+            margin-bottom: -20px;
+        } {% endcomment %}
+        
+        {% comment %} .home-links button:hover{
             background-color: #ececec;
         }
-
+        
         .apadrinhe button:hover{
             background-color: #131313;
             padding: 1.1rem;
             transition-timing-function: ease-in-out;
-        }
-
+        } {% endcomment %}
+        
         h1 {
             margin-bottom: 30px;
             margin-top: 40px;
@@ -115,7 +122,7 @@
             font-size: 2rem;
             color: #1b1b1b;
         }
-
+        
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -124,7 +131,7 @@
             margin: 0 auto;
             padding: 0 40px;
         }
-
+        
         .card {
             border: 1px solid #e0e0e0;
             border-radius: 12px;
@@ -134,12 +141,12 @@
             transition: transform 0.2s, box-shadow 0.2s;
             background-color: #ffffff;
         }
-
+        
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-
+        
         .placeholder-image {
             width: 200px;
             height: 200px;
@@ -147,15 +154,15 @@
             margin: 0 auto 15px;
             border-radius: 8px;
         }
-
+        
         .card-title {
             font-size: 1.2em;
             color: #1b1b1b;
             font-family: sans-serif;
             font-weight: 600;
         }
-
-
+        
+        
         .modal{
             display: none;
             position: fixed;
@@ -169,7 +176,7 @@
             border-radius: 15px;
             opacity: 1;
         }
-
+        
         .modal-content {
             display: flex;
             flex-direction: column;
@@ -179,7 +186,7 @@
             justify-content: center;
             align-items: center;
         }
-
+        
         .btn-close {
             position: absolute;
             top: 15px;
@@ -189,22 +196,22 @@
             cursor: pointer;
             border-radius: 25px;
         }
-
-    
-
+        
+        
+        
         .boxes-modals {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: row;
         }
-
+        
         .container-left {
             width: 50%;
             height: 100%;
             margin-right: 3rem;
         }
-
+        
         .placeholder-image-card {
             width: 22rem;
             height: 22rem;
@@ -212,7 +219,7 @@
             margin: 0 auto 15px;
             border-radius: 8px;
         }
-
+        
         .container-right {
             width: 50%;
             height: 100%;
@@ -229,13 +236,13 @@
             word-break: break-word;
             line-height: 1.5;
         }
-
+        
         .container-right h2 {
             margin-bottom: 3rem;
             margin-top: -7rem;
         }
-
-
+        
+        
         .btn-apadrinhar {
             padding: 1rem 2.3rem;
             background-color: #D9D9D9;
@@ -245,42 +252,15 @@
             margin-top: 1.6rem;
             border-radius: 10px;
         }
-
-
-
+        
+        
+        
     </style>
 </head>
 <body>    
-    <header>
-        <section class="container-pai">
-            <section class="navbar">
-                <section class="logo">
-                    <img src="{% static "img/logo.png" %}">
-                </section>
-                <section class="home-links">
-                    <section class="home">
-                        <a href="{% url 'home' %}"><button>Home</button></a>
-                    </section>
-                    <section class="sobre">
-                        <button><a href="#sobre"></a>Sobre</button> 
-                    </section>
-                    <section class="sign in">
-                        <button><a href="{% url 'home' %}"></a>Sign in</button>   
-                    </section>
-                    <section class="sign up">
-                        <a href="{% url 'cadastro_padrinho' %}"><button>Sign up</button></a>
-                    </section>
-                    <section class="apadrinhe">
-                        <a href="{% url 'pagina_exibicao' %}"><button>Apadrinhe</button></a>
-                    </section>
-                </section>
-            
-            </section>
-        </section>
-    </header>
-
+    {% include "partials/header.html" %}
     <h1>Apadrinhamento</h1>
-
+    
     <div class="grid-container">
         {% for crianca in criancas %}
         <div class="card" data-id="{{ crianca.id }}">
