@@ -115,9 +115,8 @@
         } {% endcomment %}
         
         h1 {
-            margin-bottom: 30px;
-            margin-top: 40px;
-            margin-left: 40px;
+            margin: 40px auto 30px auto;
+            text-align: center;
             font-family: sans-serif;
             font-size: 2rem;
             color: #1b1b1b;
@@ -296,6 +295,22 @@
           .btn-apadrinhar:hover {
             background-color:rgb(0, 0, 0);
           }
+
+          .btn-aleatorio {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            background-color: #e6e6e6;
+            color: #1b1b1b;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-aleatorio:hover {
+            background-color: #cccccc;
+        }
           
         
         
@@ -303,8 +318,12 @@
 </head>
 <body>    
     {% include "partials/header.html" %}
-    <h1>Apadrinhamento</h1>
-    
+    <h1>Apadrinhe um sonho!</h1>
+
+    <div style="text-align: center; margin-bottom: 30px;">
+        <button id="btn-aleatorio" class="btn-aleatorio"> Escolha por mim</button>
+    </div>
+      
     <div class="grid-container">
         {% for crianca in criancas %}
         <div class="card" data-id="{{ crianca.id }}">
@@ -378,6 +397,20 @@
               if (modal) modal.style.display = 'none';
             });
           });
+
+          
+        document.getElementById('btn-aleatorio').addEventListener('click', () => {
+            const cards = document.querySelectorAll('.card');
+            if (cards.length === 0) return;
+
+            const indexaleatorio = Math.floor(Math.random() * cards.length);
+            const escolhido = cards[indexaleatorio];
+            const id = escolhido.dataset.id;
+            const modal = document.getElementById(`modal-${id}`);
+
+            if (modal) modal.style.display = 'flex';
+        });
+
 
     </script>
 </body>
