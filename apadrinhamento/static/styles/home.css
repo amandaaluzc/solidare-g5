@@ -1,36 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
-body {
-    margin : 0;
-    padding: 0;
-    background-color: #f9fafb;
-}
-
-.container-pai {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.navbar {
-    width: 100%;
-    height: 7%;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-}
-
-.home-links{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-right: 30px;
-}
-
-.home-links button, .boas-vindas button{
+.boas-vindas button{
     font-family: sans-serif;
     font-size: 1rem;
     font-weight: 700;
@@ -49,28 +20,6 @@ body {
     color: #ffffff;
 }
 
-
-
-.logo img{
-    width: 30%;
-}
-
-.logo{
-    margin-left: 30px;
-    margin-top: -20px;
-    margin-bottom: -20px;
-}
-
-.home-links button:hover{
-    background-color: #ececec;
-}
-
-.apadrinhe button:hover{
-    background-color: #131313;
-    padding: 1.1rem;
-    transition-timing-function: ease-in-out;
-}
-
 .crianca{
     flex: 2;
 }
@@ -84,7 +33,6 @@ body {
     align-items: center; 
     justify-content: space-between; 
     padding: 30px 160px 80px 10px;
-    margin-top: 10px;
     background-color: #7cc1f388;   
 }
 
