@@ -167,12 +167,12 @@
             display: none;
             position: fixed;
             opacity: 1;
-            width: 80%;
-            height: 85%;
+            width: 60%;
+            height: 65%;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #c6c1c1;
+            background-color:rgb(198, 193, 193);
             border-radius: 15px;
             opacity: 1;
         }
@@ -253,6 +253,50 @@
             border-radius: 10px;
         }
         
+        .container-right {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            padding: 2rem;
+            text-align: left;
+          }
+          
+          .container-right .info-box {
+            width: 100%;
+          }
+          
+          .container-right h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #1b1b1b;
+            font-family: sans-serif;
+          }
+          
+          .container-right p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.5;
+          }
+          
+          .btn-apadrinhar {
+            padding: 0.8rem 1.6rem;
+            background-color: #009640;
+            color: white;
+            border: none;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+          }
+          
+          .btn-apadrinhar:hover {
+            background-color:rgb(0, 0, 0);
+          }
+          
         
         
     </style>
@@ -282,24 +326,26 @@
             <section class="modal-content">
                 <button class="btn-close" data-id="{{ crianca.id }}">X</button>
                 <section class="boxes-modals">
-                    <section class="container-left">
-                            {% if crianca.foto %}
-                            <section class="placeholder-image-card">
-                                <img src="{{ crianca.foto.url }}" alt="fotoDaCrianca{{ crianca.nome }}">
-                            </section>
-                        {% else %}
-                            <section class="placeholder-image-card">
-                                <br/>
-                            </section>
-                        {% endif %}
-                        </section>
+                  
+                  <section class="container-left">
+                    <section class="placeholder-image-card">
+                      {% if crianca.foto %}
+                        <img src="{{ crianca.foto.url }}" alt="fotoDaCrianca{{ crianca.nome }}">
+                      {% endif %}
                     </section>
-    
-                    <section class="container-right">
-                        <h2>{{crianca.nome }}, {{crianca.idade }}</h2>
-                        <p>{{crianca.descricao }}</p>
-                        <p>Apadrinhe esse sonho!</p>
-                        <button class="btn-apadrinhar">Apadrinhar</button>
+                  </section>
+              
+                  
+                  <section class="container-right">
+                    <div class="info-box">
+                      <h2>{{ crianca.nome }} – {{ crianca.idade }} anos</h2>
+                      <p>{{ crianca.descricao }}</p>
+                      <p>Apadrinhe esse sonho!</p>
+                      <button class="btn-apadrinhar">QUERO APADRINHAR</button>
+                    </div>
+                  </section>
+                </section>
+              </section>
                 </section>
                
                     
