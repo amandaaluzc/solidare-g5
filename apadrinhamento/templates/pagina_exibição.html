@@ -282,14 +282,16 @@
           }
           
           .btn-apadrinhar {
-            padding: 0.8rem 1.6rem;
-            background-color: #009640;
+            padding: 1rem 1.6rem;
+            background-color:rgb(0, 107, 46);
             color: white;
             border: none;
             font-weight: bold;
+            font-size: 1.2rem;
             border-radius: 10px;
             cursor: pointer;
             transition: 0.3s ease;
+            padding-top: 15px;
           }
           
           .btn-apadrinhar:hover {
@@ -297,10 +299,10 @@
           }
 
           .btn-aleatorio {
-            padding: 1.2rem 2.5rem;
+            padding: 1.2rem 1.3rem;
             font-size: 1.2rem;
-            background-color: #e6e6e6;
-            color: #1b1b1b;
+            background-color:rgb(0, 107, 46);
+            color:rgb(255, 255, 255);
             border: none;
             border-radius: 12px;
             font-weight: bold;
@@ -309,19 +311,34 @@
         }
         
         .btn-aleatorio:hover {
-            background-color: #cccccc;
+            background-color:rgb(0, 0, 0);
         }
-          
+
+        .titulo h1{
+            font-family: sans-serif;
+            font-weight: 600;
+            text-align: center;
+            font-size: 3.3rem;
+        }   
         
+        body{
+            font-family: sans-serif;
+        }
+
+        .info-box{
+            padding-right: 70px;
+            padding-top: 40px;
+            text-align: center;
+        }
         
     </style>
 </head>
 <body>    
     {% include "partials/header.html" %}
-    <h1>Apadrinhe um sonho!</h1>
+    <section class="titulo"><h1>Apadrinhe um sonho!</h1></section>
 
     <div style="text-align: center; margin-bottom: 30px;">
-        <button id="btn-aleatorio" class="btn-aleatorio"> Escolha por mim</button>
+        <button id="btn-aleatorio" class="btn-aleatorio">Escolha por mim</button>
     </div>
       
     <div class="grid-container">
@@ -359,7 +376,7 @@
                     <div class="info-box">
                         <h2>{{ crianca.nome }} – {{ crianca.idade }} anos</h2>
                         <p>{{ crianca.descricao }}</p>
-                        <p>Apadrinhe esse sonho!</p>
+                        <p><b>Apadrinhe esse sonho!</b></p>
                         {%if user.is_authenticated%}
                             <button class="btn-apadrinhar">Quero Apadrinhar</button>
                         {% else %}
