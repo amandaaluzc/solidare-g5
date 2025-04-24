@@ -357,10 +357,14 @@
                   
                   <section class="container-right">
                     <div class="info-box">
-                      <h2>{{ crianca.nome }} – {{ crianca.idade }} anos</h2>
-                      <p>{{ crianca.descricao }}</p>
-                      <p>Apadrinhe esse sonho!</p>
-                      <button class="btn-apadrinhar">QUERO APADRINHAR</button>
+                        <h2>{{ crianca.nome }} – {{ crianca.idade }} anos</h2>
+                        <p>{{ crianca.descricao }}</p>
+                        <p>Apadrinhe esse sonho!</p>
+                        {%if user.is_authenticated%}
+                            <button class="btn-apadrinhar">Quero Apadrinhar</button>
+                        {% else %}
+                            <a href="{% url 'login_padrinho' %}"><button class="btn-apadrinhar">Quero Apadrinhar</button></a>
+                        {%endif%}
                     </div>
                   </section>
                 </section>
