@@ -1,6 +1,10 @@
 # Laço Solidare
 
-falar sobre o projeto
+Esta aplicação web foi desenvolvida para a cadeira **Projetos 2** da **CESAR School**, em que temos como cliente o **Instituto Solidare**, uma organização sem fins lucrativos, que tem como missão promover o desenvolvimento social, político e pedagógico de crianças e adolescentes em situação de vulnerabilidade social e financeira.​ 
+
+Nosso projeto **Laço Solidare** visa automatizar os processos do sistema de apadrinhamento e prover, por meio da plataforma, troca de mensagens entre padrinhos e apadrinhados.
+
+
 
 ## 👩‍💻 Equipe
 
@@ -36,20 +40,58 @@ falar sobre o projeto
 
 ### 🎥 Screencast
 
-[Screencast protótipo de baixa]()
+[Screencast protótipo de baixa](https://youtu.be/LvRqtPp6ix8?feature=shared)
 
 
 ### 📋 Diagrama de Atividades
 
-[Link Para O Jira](https://focustimenow.atlassian.net/jira/software/projects/LS/boards/34?atlOrigin=eyJpIjoiMmI0MTllN2E5ZGIxNGNhNjk3OGIxOGFlNWQ5OTg4N2YiLCJwIjoiaiJ9)
+* BACKLOG 
 
-* BACKLOG  (ADICIONAR)
+![Backlog1](media/Backlog1.png)
 
+* SPRINT SR1
 
-* SPRINT  (ADICIONAR)
+![Sprint](media/Sprint1.png)
 
 
 ### 🐛 Issue/Bug Tracker
+
+* Issue #2
+
+![Issue #2](media/issue-1/bug2.png)
+
+* Issue #8
+
+![Issue #8](media/issue-1/bug8.png)
+
+* Issue #9
+
+![Issue #9](media/issue-1/bug9.png)
+
+* Issue #13
+
+![Issue #13](media/issue-1/bug13.png)
+
+* Issue #14
+
+![Issue #14](media/issue-1/bug14.png)
+
+* Issue #16
+
+![Issue #16](media/issue-1/bug16.png)
+
+* Issue #21
+
+![Issue #21](media/issue-1/bug21.png)
+
+* Issue #24
+
+![Issue #24](media/issue-1/bug24.png)
+
+* Issue #26
+
+![Issue #26](media/issue-1/bug26.png)
+
 
 
 ### 🚀 Deployment
