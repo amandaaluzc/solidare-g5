@@ -3,7 +3,12 @@ from .models import Crianca
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.db import transaction
-from django.shortcuts import get_object_or_404 
+from django.shortcuts import get_object_or_404
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
+
+from django.contrib.auth import authenticate, login
 
 from .forms import PadrinhoRegistrationForm
 from .models import Padrinho
@@ -45,7 +50,7 @@ def lista_criancas(request):
     return render(request, 'lista_criancas.html', {'criancas': criancas})
 
 def homepage (request):
-    return render (request , 'index.html')
+    return render (request , 'home.html')
 
 def detalhes_crianca(request, crianca_id):
     crianca = get_object_or_404(Crianca, id=crianca_id)
@@ -54,3 +59,21 @@ def detalhes_crianca(request, crianca_id):
 def pagina_exibicao(request):
     criancas = Crianca.objects.all()
     return render(request, 'pagina_exibição.html', {'criancas': criancas})
+
+def login_padrinho(request):
+
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        senha = request.POST.get('password')
+        user = authenticate(request, username=email, password=senha)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'Email ou senha incorretos.')
+
+    return render(request, 'login_padrinho.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
