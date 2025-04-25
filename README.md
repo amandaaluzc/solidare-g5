@@ -113,6 +113,8 @@ Nosso projeto **Laço Solidare** visa automatizar os processos do sistema de apa
 
 🔗 [Site no Ar](https://lacosolidare-abcshnhxerhqbgga.brazilsouth-01.azurewebsites.net/)
 
+🔗 [Página do Admin](https://lacosolidare-abcshnhxerhqbgga.brazilsouth-01.azurewebsites.net/admin)
+
 #### Dados Admin
 - **Login**: G5PJLACOSOLIDAREADMIN  
 - **Senha**: #GRUPO5LS2025
