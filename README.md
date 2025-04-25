@@ -54,6 +54,13 @@ Nosso projeto **Laço Solidare** visa automatizar os processos do sistema de apa
 
 ---
 
+### ✏️ Sketches
+
+![Sketche1](media/sketche1.jpg)
+![Sketche2](media/sketche2.jpg)
+
+---
+
 ### 🎥 Screencast
 
 [Screencast protótipo de baixa](https://youtu.be/LvRqtPp6ix8?feature=shared)
