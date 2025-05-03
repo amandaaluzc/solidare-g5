@@ -77,3 +77,6 @@ def login_padrinho(request):
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+def admin(request):
+    return render(request, 'painel_admin.html')
