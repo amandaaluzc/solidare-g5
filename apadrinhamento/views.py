@@ -80,3 +80,6 @@ def logout_view(request):
 
 def admin(request):
     return render(request, 'painel_admin.html')
+
+def login_admin (request):
+    return render (request, 'login_adm.html' )

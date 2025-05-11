@@ -10,4 +10,5 @@ urlpatterns = [
     path('' , views.homepage, name='home'),
     path('lista-criancas/', views.lista_criancas, name='lista_criancas'),
     path('pagina-exibicao/', views.pagina_exibicao, name='pagina_exibicao'),
+    path ('login_admin/' , views.login_admin , name='login_admin'),
 ]
