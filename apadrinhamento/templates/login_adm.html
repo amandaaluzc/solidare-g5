@@ -14,19 +14,17 @@
     {% include "partials/header.html" %}
     
     <section class="box-content">
-        <h2>Portal do adm</h2>
-        <section class="login">
-            <form>
-                <label for="username">Name</label>
-                <input type="text" class="nome-login" id="nome-login" name="username" required>
-                <label for="password">Senha</label>
-                <input type="password" class="senha-login" id="senha-login" name="password" required>
-                <button type="submit">Entrar</button>
-            </form>
+        <form method="POST">
+            {% csrf_token %}   
+
+            <label for="username">Email</label>
+            <input type="text" class="nome-login" id="nome-login" name="username" placeholder="Email" required>
+            <label for="password">Senha</label>
+            <input type="password" class="senha-login" id="senha-login" name="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+            <a href="{% url 'pagina_exibicao' %}">Crie uma conta!</a>
+        </form>
             
-
-
-        </section>
     </section>
   
 </body>
