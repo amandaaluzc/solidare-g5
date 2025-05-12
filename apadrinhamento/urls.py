@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     path("criança/<int:crianca_id>/", views.detalhes_crianca, name="detalhes_crianca"),
@@ -10,5 +11,5 @@ urlpatterns = [
     path('' , views.homepage, name='home'),
     path('lista-criancas/', views.lista_criancas, name='lista_criancas'),
     path('pagina-exibicao/', views.pagina_exibicao, name='pagina_exibicao'),
-    path ('login_admin/' , views.login_admin , name='login_admin'),
+    path('login_admin/' , views.login_admin , name='login_admin'),
 ]

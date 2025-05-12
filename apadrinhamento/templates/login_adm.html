@@ -17,12 +17,11 @@
         <form method="POST">
             {% csrf_token %}   
 
-            <label for="username">Email</label>
-            <input type="text" class="nome-login" id="nome-login" name="username" placeholder="Email" required>
+            <label for="Nome">Usuário</label>
+            <input type="text" class="nome-login" id="nome-login" name="nome" placeholder="Nome de usuário" required>
             <label for="password">Senha</label>
             <input type="password" class="senha-login" id="senha-login" name="password" placeholder="Senha" required>
             <button type="submit">Entrar</button>
-            <a href="{% url 'pagina_exibicao' %}">Crie uma conta!</a>
         </form>
             
     </section>

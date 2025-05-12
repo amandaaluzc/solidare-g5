@@ -6,6 +6,8 @@ from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
 
 
 from django.contrib.auth import authenticate, login
@@ -78,8 +80,29 @@ def logout_view(request):
     logout(request)
     return redirect('home')
 
+
+@login_required
 def admin(request):
+    if not request.user.is_staff:
+        if not request.user.is_staff:
+            return HttpResponseForbidden("Acesso restrito a administradores.")
+    
     return render(request, 'painel_admin.html')
 
-def login_admin (request):
-    return render (request, 'login_adm.html' )
+def login_admin(request):
+    if request.method == 'POST':
+        nome = request.POST.get('nome')
+        senha = request.POST.get('password')
+        
+        user = authenticate(request, username=nome, password=senha)
+        
+        if user is not None:
+            if user.is_superuser:
+                login(request, user)
+                return redirect('painel_admin')
+            else:
+                messages.error(request, 'Apenas o superusuário pode acessar este painel.')
+        else:
+            messages.error(request, 'Email ou senha incorretos.')
+
+    return render(request, 'login_adm.html')
