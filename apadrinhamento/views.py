@@ -89,6 +89,17 @@ def admin(request):
     
     return render(request, 'painel_admin.html')
 
+@login_required
+def escolha_admin(request):
+    if not request.user.is_staff:
+        if not request.user.is_staff:
+            return HttpResponseForbidden("Acesso restrito a administradores.")
+    
+    return render(request, 'escolha_admin.html')
+
+
+
+
 def login_admin(request):
     if request.method == 'POST':
         nome = request.POST.get('nome')
@@ -99,10 +110,27 @@ def login_admin(request):
         if user is not None:
             if user.is_superuser:
                 login(request, user)
-                return redirect('painel_admin')
+                return redirect('escolha_admin')
             else:
                 messages.error(request, 'Apenas o superusuário pode acessar este painel.')
         else:
-            messages.error(request, 'Email ou senha incorretos.')
+            messages.error(request, 'Nome ou senha incorretos.')
 
     return render(request, 'login_adm.html')
+
+@login_required
+def gerenciar_padrinhos (request):
+    if not request.user.is_staff:
+        if not request.user.is_staff:
+            return HttpResponseForbidden("Acesso restrito a administradores.")
+    
+    return render(request, 'gerenciar_padrinho.html')
+
+@login_required
+def gerenciar_afilhados (request):
+    if not request.user.is_staff:
+        if not request.user.is_staff:
+            return HttpResponseForbidden("Acesso restrito a administradores.")
+    
+    return render(request, 'gerenciar_afilhado.html')
+
