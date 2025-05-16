@@ -1,5 +1,6 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>{{ crianca.nome }}</title>
@@ -9,9 +10,26 @@
     <p><strong>Idade:</strong> {{ crianca.idade }}</p>
     <p><strong>Descrição:</strong> {{ crianca.descricao }}</p>
 
-    <br>
-    <a href="/cadastro-padrinho/"><button>Quero apadrinhar</button></a>
+    {# --------------------------------------------------------- #}
+    {# ­--- Bloco de ação de apadrinhamento                     #}
+    {# --------------------------------------------------------- #}
+    {% if apadrinhada %}
+        <p><em>Esta criança já foi apadrinhada.</em></p>
+    {% else %}
+        {% if user.is_authenticated and not user.is_staff %}
+            {# Padrinho autenticado: cria o apadrinhamento #}
+            <a href="{% url 'apadrinhar_crianca' crianca.id %}">
+                <button>Quero apadrinhar</button>
+            </a>
+        {% else %}
+            {# Visitante ou admin: pede login de padrinho #}
+            <a href="{% url 'login_padrinho' %}?next={{ request.path }}">
+                <button>Quero apadrinhar</button>
+            </a>
+        {% endif %}
+    {% endif %}
+
     <br><br>
-    <a href="/lista-criancas/">Voltar para lista</a>
+    <a href="{% url 'lista_criancas' %}">Voltar para lista</a>
 </body>
 </html>

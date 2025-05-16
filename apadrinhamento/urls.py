@@ -13,6 +13,7 @@ urlpatterns = [
     path('pagina-exibicao/', views.pagina_exibicao, name='pagina_exibicao'),
     path('login_admin/' , views.login_admin , name='login_admin'),
     path('escolha_adm/' , login_required(views.escolha_admin) , name= 'escolha_admin'),
+    path('apadrinhar/<int:crianca_id>/', views.apadrinhar_crianca, name='apadrinhar_crianca'),
     path ('gerenciar_padrinhos/' , login_required(views.gerenciar_padrinhos) , name='gerenciar_padrinhos'),
     path ('gerenciar_afilhados/' , login_required(views.gerenciar_afilhados) , name='gerenciar_afilhados'),
 ]

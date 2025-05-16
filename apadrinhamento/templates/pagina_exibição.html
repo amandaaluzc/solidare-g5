@@ -376,11 +376,16 @@
                         <h2>{{ crianca.nome }} – {{ crianca.idade }} anos</h2>
                         <p>{{ crianca.descricao }}</p>
                         <p><b>Apadrinhe esse sonho!</b></p>
-                        {%if user.is_authenticated%}
-                            <button class="btn-apadrinhar">Quero Apadrinhar</button>
+                        {% if user.is_authenticated and not user.is_staff %}
+                            <a href="{% url 'apadrinhar_crianca' crianca.id %}">
+                                <button class="btn-apadrinhar">Quero Apadrinhar</button>
+                            </a>
                         {% else %}
-                            <a href="{% url 'login_padrinho' %}"><button class="btn-apadrinhar">Quero Apadrinhar</button></a>
-                        {%endif%}
+                            <a href="{% url 'login_padrinho' %}">
+                                <button class="btn-apadrinhar">Quero Apadrinhar</button>
+                            </a>
+                        {% endif %}
+
                     </div>
                   </section>
                 </section>
