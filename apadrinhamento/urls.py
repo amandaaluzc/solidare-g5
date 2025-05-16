@@ -7,9 +7,12 @@ urlpatterns = [
     path('login/', views.login_padrinho, name='login_padrinho'),
     path('logout/', views.logout_view, name='logout_padrinho'),
     path('registrar/', views.registrar_padrinho, name='registrar_padrinho'),
-    path('painel-admin/', views.admin, name='painel_admin'),
+    path('painel-admin/', login_required(views.admin), name='painel_admin'),
     path('' , views.homepage, name='home'),
     path('lista-criancas/', views.lista_criancas, name='lista_criancas'),
     path('pagina-exibicao/', views.pagina_exibicao, name='pagina_exibicao'),
     path('login_admin/' , views.login_admin , name='login_admin'),
+    path('escolha_adm/' , login_required(views.escolha_admin) , name= 'escolha_admin'),
+    path ('gerenciar_padrinhos/' , login_required(views.gerenciar_padrinhos) , name='gerenciar_padrinhos'),
+    path ('gerenciar_afilhados/' , login_required(views.gerenciar_afilhados) , name='gerenciar_afilhados'),
 ]
