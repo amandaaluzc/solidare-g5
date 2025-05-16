@@ -13,7 +13,7 @@ from django.http import HttpResponseForbidden
 from django.contrib.auth import authenticate, login
 
 from .forms import PadrinhoRegistrationForm
-from .models import Padrinho
+from .models import Padrinho , Apadrinhamento
 
 def registrar_padrinho(request):
     if request.method == "POST":
@@ -124,7 +124,10 @@ def gerenciar_padrinhos (request):
         if not request.user.is_staff:
             return HttpResponseForbidden("Acesso restrito a administradores.")
     
-    return render(request, 'gerenciar_padrinho.html')
+    padrinhos = Padrinho.objects.all()
+    apadrinhamentos = Apadrinhamento.objects.select_related('padrinho__user', 'crianca')
+    
+    return render(request, 'gerenciar_padrinho.html' , {'padrinhos': padrinhos ,  'apadrinhamentos': apadrinhamentos})
 
 @login_required
 def gerenciar_afilhados (request):

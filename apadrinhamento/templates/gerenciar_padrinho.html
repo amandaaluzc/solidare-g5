@@ -41,6 +41,42 @@
                 </section>
             </header>
 
+            <section class="box-content">
+                <h2>Gerenciar Padrinhos</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Nome</td>
+                            <td>Afilhados</td>
+                            <td>Ações</td>
+                        </tr>
+                    </thead>
+
+                   <tbody>
+                        {% for ap in apadrinhamentos %}
+                            <tr>
+                                <td>{{ ap.padrinho.user.get_full_name }}</td>
+                                <td>{{ ap.crianca.nome }}</td>
+                                <td>
+                                    <button type="button"><img src="{% static 'img/edit.png' %}"></button>
+                                    <button type="button"><img src="{% static 'img/delete.png' %}"></button>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="2">Nenhum padrinho registrado.</td>
+                                <td colspan="3">
+                                    <button type="button"><img src="{% static 'img/edit.png' %}"></button>
+                                    <button type="button"><img src="{% static 'img/delete.png' %}"></button>
+                                </td>
+                            </tr>
+                            
+                            
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+
         {% else %}
             <h1>Usuario negado</h1>
         {% endif %}
