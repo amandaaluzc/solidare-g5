@@ -1,15 +1,49 @@
+{% extends 'escolha_admin.html' %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciar_padrinhos</title>
+    
+    {%block extra_css %}
+    <link rel="stylesheet" href="{% static 'styles/gerenciar_padrinho.css' %}">
+    {% endblock %}
 </head>
+
 <body>
-    {% if user.is_authenticated %}
-        <h1>Gerenciar padrinhos</h1>
-    {% else %}
-        <h1>Usuario negado</h1>
-    {% endif %}
+    {% block content %}
+        {% if user.is_authenticated %}
+            <header>
+                <section class="container-pai">
+                    <section class="navbar">
+                    <section class="logo">
+                        <a href="{% url 'home' %}">
+                        <img src="{% static 'img/logo-solidare2.png' %}" alt="Logo Solidare">
+                        </a>
+                    </section>
+
+                    <section class="home-links">
+                        <section class="home">
+                        <a href="{% url 'home' %}"><button>Home</button></a>
+                        </section>
+                        <section class="gerenciar">
+                        <a href="{% url 'escolha_admin' %}#sobre"><button>gerenciar</button></a>
+                        </section>
+
+                        <section class="cadastrar">
+                        <a href="{% url 'pagina_exibicao' %}"><button>Cadastrar</button></a>
+                        </section>
+                    </section>
+                    </section>
+                </section>
+            </header>
+
+        {% else %}
+            <h1>Usuario negado</h1>
+        {% endif %}
+    {% endblock content %} 
 </body>
 </html>

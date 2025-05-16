@@ -54,7 +54,7 @@ body {
     margin: 15px;
 }
 
-.apadrinhe button{
+.cadastrar button{
     padding: 1rem;
     background-color: #009640;
     color: #ffffff;
@@ -73,7 +73,7 @@ body {
     background-color: #ececec;
 }
 
-.apadrinhe button:hover{
+.cadastrar button:hover{
     background-color: #02ab4b;
     transition-timing-function: ease-in-out;
 }
