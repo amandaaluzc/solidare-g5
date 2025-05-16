@@ -32,4 +32,4 @@ class Apadrinhamento(models.Model):
     data_apadrinhamento = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.padrinho.nome} apadrinhou {self.crianca.nome}"
+        return f"{self.padrinho.__str__()} apadrinhou {self.crianca}"
