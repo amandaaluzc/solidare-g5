@@ -139,7 +139,10 @@ def gerenciar_afilhados (request):
     if not request.user.is_staff:
         return HttpResponseForbidden("Acesso restrito a administradores.")
     
-    return render(request, 'gerenciar_afilhado.html')
+    padrinhos = Padrinho.objects.all()
+    apadrinhamentos = Apadrinhamento.objects.select_related('padrinho__user', 'crianca')
+    
+    return render(request, 'gerenciar_afilhado.html' , {'padrinhos': padrinhos ,  'apadrinhamentos': apadrinhamentos})
 
 @login_required
 def apadrinhar_crianca(request, crianca_id):

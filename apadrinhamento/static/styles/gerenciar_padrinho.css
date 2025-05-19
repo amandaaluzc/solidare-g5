@@ -15,7 +15,7 @@
 }
 
 .content h2 {
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
     font-size: 2rem;
     font-weight: bold;
 } 
@@ -47,7 +47,7 @@ th  {
     padding: 16px;
     text-align: center;
     font-size: 1.3rem;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 td  {

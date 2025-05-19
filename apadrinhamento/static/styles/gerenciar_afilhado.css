@@ -1,0 +1,70 @@
+.box-content {
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 0;
+}
+
+.content h2 {
+    margin-bottom: 4rem;
+    font-size: 2rem;
+    font-weight: bold;
+} 
+
+.tabela {
+    height: auto;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    border: solid 1px rgb(198, 198, 198);
+    border-radius: 12px;
+}
+
+.tabela table{
+    width: 100%;
+    border-radius: 10px;
+    border-radius: 12px;
+    overflow: hidden;
+    border-collapse: collapse;
+    
+}
+
+thead {
+    background-color: #e6e6e6;
+    font-weight: bold;
+}
+
+th  {
+    padding: 16px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+td  {
+    padding: 16px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+
+tbody button {
+    background-color: #f9fafb ;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+tbody img {
+    width: 18px;
+    height: 18px;
+}

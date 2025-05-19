@@ -41,6 +41,51 @@
                 </section>
             </header>
 
+            <section class="box-content">
+                <section class="content">
+                    <h2>Gerenciar Afilhados</h2>
+                
+                    <section class="tabela">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Afilhados</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for ap in apadrinhamentos %}
+                                    <tr>
+                                        <td>{{ ap.crianca.nome }}</td>
+                                        {% if ap.padrinho and ap.padrinho.user.get_full_name %}
+                                            <td>{{ ap.padrinho.user.get_full_name }}</td>
+
+                                        {% else %}
+                                            <td>Disponível</td>
+                                        
+                                        {% endif %}
+                                        <td>
+                                            <button type="button"><img src="{% static 'img/edit.png' %}"></button>
+                                            <button type="button"><img src="{% static 'img/delete.png' %}"></button>
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="3">Nenhum padrinho registrado.</td>
+                                    </tr>
+                                    
+                                    
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </section>
+                </section>
+            </section>
+
+
+
         {% else %}
             <h1>Usuario negado</h1>
         {% endif %}
