@@ -49,9 +49,10 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Afilhados</th>
+                                    <th>Nome</th>
                                     <th>Status</th>
                                     <th>Ações</th>
+                                    <th>Imagem</th>
                                 </tr>
                             </thead>
 
@@ -60,22 +61,29 @@
                                     <tr>
                                         <td>{{ ap.crianca.nome }}</td>
                                         {% if ap.padrinho and ap.padrinho.user.get_full_name %}
-                                            <td>{{ ap.padrinho.user.get_full_name }}</td>
+                                            <td>Apadrinhada</td>
                                         {% else %}
                                             <td>Disponível</td>
                                         {% endif %}
                                         
                                         <td>
-                                            <button type="button"><img src="{% static 'img/edit.png' %}"></button>
-                                            <button type="button"><img src="{% static 'img/delete.png' %}"></button>
+                                            <button type="button" class="edit-button" onclick="openModal('{{ ap.crianca.id }}')">
+                                                <img src="{% static 'img/edit.png' %}" alt="Editar">
+                                            </button>
+                                            <button type="button" onclick="openDeleteConfirmModal('{{ ap.crianca.id }}')">
+                                                <img src="{% static 'img/delete.png' %}" alt="Deletar">
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button type="button">
+                                                <img src="{% static 'img/download.png' %}" alt="Download">
+                                            </button>
                                         </td>
                                     </tr>
                                 {% empty %}
                                     <tr>
-                                        <td colspan="3">Nenhum padrinho registrado.</td>
+                                        <td colspan="4">Nenhum padrinho registrado.</td>
                                     </tr>
-                                    
-                                    
                                 {% endfor %}
                             </tbody>
                         </table>
@@ -83,7 +91,92 @@
                 </section>
             </section>
 
+            <div id="editModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Editar Afilhado</h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-container">
+                            <form id="editForm" method="POST">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="nome">Nome:</label>
+                                    <input type="text" id="nome" name="nome">
+                                </div>
+                                <div class="form-group">
+                                    <label for="idade">Idade:</label>
+                                    <input type="number" id="idade" name="idade">
+                                </div>
+                                <div class="form-group">
+                                    <label for="descricao">Descrição:</label>
+                                    <textarea id="descricao" name="descricao"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="urlFoto">URL da foto:</label>
+                                    <input type="text" id="urlFoto" name="urlFoto">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="preview-image">
 
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" form="editForm" class="btn-save">Salvar</button>
+                        <button type="button" class="btn-delete">Deletar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="deleteConfirmModal" class="modal">
+                <div class="modal-content delete-confirm">
+                    <div class="modal-header">
+                        <h2>Confirmar Exclusão</h2>
+                    </div>
+                    <div class="modal-body">
+                        <p>Você realmente deseja excluir este afilhado?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-confirm-yes">Sim</button>
+                        <button type="button" class="btn-confirm-no">Não</button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function openModal(criancaId) {
+                    const modal = document.getElementById('editModal');
+                    modal.style.display = 'block';
+                }
+
+                function openDeleteConfirmModal(criancaId) {
+                    const modal = document.getElementById('deleteConfirmModal');
+                    modal.style.display = 'block';
+                    
+                    const btnNo = modal.querySelector('.btn-confirm-no');
+                    btnNo.onclick = function() {
+                        modal.style.display = 'none';
+                    }
+
+                    const btnYes = modal.querySelector('.btn-confirm-yes');
+                    btnYes.onclick = function() {
+                        modal.style.display = 'none';
+                    }
+                }
+
+                window.onclick = function(event) {
+                    const editModal = document.getElementById('editModal');
+                    const deleteModal = document.getElementById('deleteConfirmModal');
+                    
+                    if (event.target == editModal) {
+                        editModal.style.display = 'none';
+                    }
+                    if (event.target == deleteModal) {
+                        deleteModal.style.display = 'none';
+                    }
+                }
+            </script>
 
         {% else %}
             <h1>Usuario negado</h1>
