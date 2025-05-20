@@ -61,11 +61,10 @@
                                         <td>{{ ap.crianca.nome }}</td>
                                         {% if ap.padrinho and ap.padrinho.user.get_full_name %}
                                             <td>{{ ap.padrinho.user.get_full_name }}</td>
-
                                         {% else %}
                                             <td>Disponível</td>
-                                        
                                         {% endif %}
+                                        
                                         <td>
                                             <button type="button"><img src="{% static 'img/edit.png' %}"></button>
                                             <button type="button"><img src="{% static 'img/delete.png' %}"></button>

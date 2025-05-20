@@ -1,5 +1,5 @@
 .box-content {
-    height: 80vh;
+    height: auto;
     width: 100%;
     display: flex;
     align-items: center;

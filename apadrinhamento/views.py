@@ -135,14 +135,32 @@ def gerenciar_padrinhos (request):
     return render(request, 'gerenciar_padrinho.html' , {'padrinhos': padrinhos ,  'apadrinhamentos': apadrinhamentos})
 
 @login_required
-def gerenciar_afilhados (request):
+def gerenciar_afilhados(request):
     if not request.user.is_staff:
         return HttpResponseForbidden("Acesso restrito a administradores.")
     
     padrinhos = Padrinho.objects.all()
-    apadrinhamentos = Apadrinhamento.objects.select_related('padrinho__user', 'crianca')
     
-    return render(request, 'gerenciar_afilhado.html' , {'padrinhos': padrinhos ,  'apadrinhamentos': apadrinhamentos})
+    apadrinhamentos_existentes = Apadrinhamento.objects.select_related('padrinho__user', 'crianca')
+    
+
+    todas_criancas = Crianca.objects.all()
+    
+   
+    apadrinhamentos = []
+    criancas_apadrinhadas_ids = set(ap.crianca.id for ap in apadrinhamentos_existentes)
+    
+
+    for ap in apadrinhamentos_existentes:
+        apadrinhamentos.append(ap)
+    
+
+    for crianca in todas_criancas:
+        if crianca.id not in criancas_apadrinhadas_ids:
+            ap_vazio = Apadrinhamento(crianca=crianca, padrinho=None)
+            apadrinhamentos.append(ap_vazio)
+    
+    return render(request, 'gerenciar_afilhado.html', {'padrinhos': padrinhos, 'apadrinhamentos': apadrinhamentos})
 
 @login_required
 def apadrinhar_crianca(request, crianca_id):
