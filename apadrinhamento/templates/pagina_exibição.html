@@ -6,7 +6,28 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apadrinhamento</title>
     <style>
-
+        .filtro-group {
+            margin-bottom: 15px;
+        }
+        
+        .filtro-select {
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            min-width: 150px;
+            background-color: white;
+            cursor: pointer;
+        }
+        
+        .filtro-select:focus {
+            outline: none;
+            border-color: #006b2e;
+        }
+        
+        #limpar-filtros:hover {
+            background-color: #e0e0e0;
+        }
         .placeholder-image img{
             width: 100%;
             height: 100%;
@@ -339,7 +360,32 @@
     <div style="text-align: center; margin-bottom: 30px;">
         <button id="btn-aleatorio" class="btn-aleatorio">Escolha por mim</button>
     </div>
-      
+    <div class="filtros-container" style="text-align: center; margin: 20px auto; max-width: 800px;">
+        <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+            <!-- Filtro por Gênero -->
+            <div class="filtro-group">
+                <label for="filtro-genero" style="display: block; margin-bottom: 8px; font-weight: bold;">Gênero</label>
+                <select id="filtro-genero" class="filtro-select">
+                    <option value="todos">Todos</option>
+                    <option value="M">Menino</option>
+                    <option value="F">Menina</option>
+                </select>
+            </div>
+            
+            <!-- Filtro por Idade -->
+            <div class="filtro-group">
+                <label for="filtro-idade" style="display: block; margin-bottom: 8px; font-weight: bold;">Idade</label>
+                <select id="filtro-idade" class="filtro-select">
+                    <option value="todos">Todas</option>
+                    <option value="0-5">0-5 anos</option>
+                    <option value="6-10">6-10 anos</option>
+                    <option value="11-15">11-15 anos</option>
+                    <option value="16+">16+ anos</option>
+                </select>
+            </div>
+            
+        </div>
+    </div>
     <div class="grid-container">
         {% for crianca in criancas %}
         <div class="card" data-id="{{ crianca.id }}">
