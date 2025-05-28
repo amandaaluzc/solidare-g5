@@ -1,488 +1,518 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apadrinhamento</title>
-    <style>
-        .filtro-group {
-            margin-bottom: 15px;
-        }
-        
-        .filtro-select {
-            padding: 10px 15px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
-            min-width: 150px;
-            background-color: white;
-            cursor: pointer;
-        }
-        
-        .filtro-select:focus {
-            outline: none;
-            border-color: #006b2e;
-        }
-        
-        #limpar-filtros:hover {
-            background-color: #e0e0e0;
-        }
-        .placeholder-image img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        .placeholder-image-card {
-            width: 180px;
-            height: 180px;
-            background-color: #f0f0f0;
-            margin: 0 auto 15px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .placeholder-image-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .card-container {
-            max-width: 350px;
-            margin: 50px auto;
-            padding: 20px;
-            text-align: center;
-            background-color: #e0dcdc;
-            border-radius: 12px;
-        }
-        
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        {% comment %} body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        
-        
-        .container-pai {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .navbar {
-            width: 100%;
-            height: 7%;
-            background-color: #ffffff;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .home-links{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            margin-right: 30px;
-        }
-        
-        .home-links button{
-            font-family: sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            margin: 15px;
-            padding: 0.8rem;
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-            background-color: transparent;
+    {% load static %}
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Apadrinhamento</title>
+        <style>
+            .filtro-group {
+                margin-bottom: 15px;
+            }
             
-        }
-        
-        .apadrinhe button{
-            padding: 1rem;
-            background-color: #1b1b1b;
-            color: #ffffff;
-        }
-        
-        {% comment %} .logo img{
-            width: 236px;
-        }
-        
-        .logo{
-            margin-left: 30px;
-            margin-top: -20px;
-            margin-bottom: -20px;
-        } {% endcomment %}
-        
-        {% comment %} .home-links button:hover{
-            background-color: #ececec;
-        }
-        
-        .apadrinhe button:hover{
-            background-color: #131313;
-            padding: 1.1rem;
-            transition-timing-function: ease-in-out;
-        } {% endcomment %}
-        
-        h1 {
-            margin: 40px auto 30px auto;
-            text-align: center;
-            font-family: sans-serif;
-            font-size: 2rem;
-            color: #1b1b1b;
-        }
-        
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-        
-        .card {
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            background-color: #ffffff;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .placeholder-image {
-            width: 200px;
-            height: 200px;
-            background-color: #f0f0f0;
-            margin: 0 auto 15px;
-            border-radius: 8px;
-        }
-        
-        .card-title {
-            font-size: 1.2em;
-            color: #1b1b1b;
-            font-family: sans-serif;
-            font-weight: 600;
-        }
-        
-        
-        .modal{
-            display: none;
-            position: fixed;
-            opacity: 1;
-            width: 60%;
-            height: 65%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color:rgb(198, 193, 193);
-            border-radius: 15px;
-            opacity: 1;
-        }
-        
-        .modal-content {
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            width: 100%;
-            height: 100%;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .btn-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            padding: 0.7rem;
-            border: none;
-            cursor: pointer;
-            border-radius: 25px;
-        }
-        
-        
-        
-        .boxes-modals {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
-        }
-        
-        .container-left {
-            width: 50%;
-            height: 100%;
-            margin-right: 3rem;
-        }
-        
-        .placeholder-image-card {
-            width: 22rem;
-            height: 22rem;
-            background-color: #f0f0f0;
-            margin: 0 auto 15px;
-            border-radius: 8px;
-        }
-        
-        .container-right {
-            width: 50%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            font-size: 1rem;
-            box-sizing: border-box;
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            white-space: normal;
-            word-break: break-word;
-            line-height: 1.5;
-        }
-        
-        .container-right h2 {
-            margin-bottom: 3rem;
-            margin-top: -7rem;
-        }
-        
-        
-        .btn-apadrinhar {
-            padding: 1rem 2.3rem;
-            background-color: #D9D9D9;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-top: 1.6rem;
-            border-radius: 10px;
-        }
-        
-        .container-right {
-            width: 50%;
-            height: 100%;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            flex-direction: column;
-            padding: 2rem;
-            text-align: left;
-          }
-          
-          .container-right .info-box {
-            width: 100%;
-          }
-          
-          .container-right h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: #1b1b1b;
-            font-family: sans-serif;
-          }
-          
-          .container-right p {
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            color: #333;
-            line-height: 1.5;
-          }
-          
-          .btn-apadrinhar {
-            padding: 1rem 1.6rem;
-            background-color:rgb(0, 107, 46);
-            color: white;
-            border: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s ease;
-            padding-top: 15px;
-          }
-          
-          .btn-apadrinhar:hover {
-            background-color:rgb(0, 0, 0);
-          }
-
-          .btn-aleatorio {
-            padding: 1.2rem 1.3rem;
-            font-size: 1.2rem;
-            background-color:rgb(0, 107, 46);
-            color:rgb(255, 255, 255);
-            border: none;
-            border-radius: 12px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        
-        .btn-aleatorio:hover {
-            background-color:rgb(0, 0, 0);
-        }
-
-        .titulo h1{
-            font-family: sans-serif;
-            font-weight: 600;
-            text-align: center;
-            font-size: 3.3rem;
-        }   
-        
-        body{
-            font-family: sans-serif;
-        }
-
-        .info-box{
-            padding-right: 70px;
-            padding-top: 40px;
-            text-align: center;
-        }
-        
-    </style>
-</head>
-<body>    
-    {% include "partials/header.html" %}
-    <section class="titulo"><h1>Apadrinhe um sonho!</h1></section>
-
-    <div style="text-align: center; margin-bottom: 30px;">
-        <button id="btn-aleatorio" class="btn-aleatorio">Escolha por mim</button>
-    </div>
-    <div class="filtros-container" style="text-align: center; margin: 20px auto; max-width: 800px;">
-        <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
-            <!-- Filtro por Gênero -->
-            <div class="filtro-group">
-                <label for="filtro-genero" style="display: block; margin-bottom: 8px; font-weight: bold;">Gênero</label>
-                <select id="filtro-genero" class="filtro-select">
-                    <option value="todos">Todos</option>
-                    <option value="M">Menino</option>
-                    <option value="F">Menina</option>
-                </select>
-            </div>
+            .filtro-select {
+                padding: 10px 15px;
+                border-radius: 8px;
+                border: 1px solid #ccc;
+                font-size: 1rem;
+                min-width: 150px;
+                background-color: white;
+                cursor: pointer;
+            }
             
-            <!-- Filtro por Idade -->
-            <div class="filtro-group">
-                <label for="filtro-idade" style="display: block; margin-bottom: 8px; font-weight: bold;">Idade</label>
-                <select id="filtro-idade" class="filtro-select">
-                    <option value="todos">Todas</option>
-                    <option value="0-5">0-5 anos</option>
-                    <option value="6-10">6-10 anos</option>
-                    <option value="11-15">11-15 anos</option>
-                    <option value="16+">16+ anos</option>
-                </select>
-            </div>
+            .filtro-select:focus {
+                outline: none;
+                border-color: #006b2e;
+            }
             
+            #limpar-filtros:hover {
+                background-color: #e0e0e0;
+            }
+            .placeholder-image img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+            .placeholder-image-card {
+                width: 180px;
+                height: 180px;
+                background-color: #f0f0f0;
+                margin: 0 auto 15px;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+            
+            .placeholder-image-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            
+            .card-container {
+                max-width: 350px;
+                margin: 50px auto;
+                padding: 20px;
+                text-align: center;
+                background-color: #e0dcdc;
+                border-radius: 12px;
+            }
+            
+            
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            {% comment %} body {
+                font-family: Arial, sans-serif;
+                padding: 20px;
+            }
+            
+            
+            .container-pai {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .navbar {
+                width: 100%;
+                height: 7%;
+                background-color: #ffffff;
+                display: flex;
+                justify-content: space-between;
+            }
+            
+            .home-links{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                margin-right: 30px;
+            }
+            
+            .home-links button{
+                font-family: sans-serif;
+                font-size: 1rem;
+                font-weight: 700;
+                margin: 15px;
+                padding: 0.8rem;
+                border-radius: 10px;
+                border: none;
+                cursor: pointer;
+                background-color: transparent;
+                
+            }
+            
+            .apadrinhe button{
+                padding: 1rem;
+                background-color: #1b1b1b;
+                color: #ffffff;
+            }
+            
+            {% comment %} .logo img{
+                width: 236px;
+            }
+            
+            .logo{
+                margin-left: 30px;
+                margin-top: -20px;
+                margin-bottom: -20px;
+            } {% endcomment %}
+            
+            {% comment %} .home-links button:hover{
+                background-color: #ececec;
+            }
+            
+            .apadrinhe button:hover{
+                background-color: #131313;
+                padding: 1.1rem;
+                transition-timing-function: ease-in-out;
+            } {% endcomment %}
+            
+            h1 {
+                margin: 40px auto 30px auto;
+                text-align: center;
+                font-family: sans-serif;
+                font-size: 2rem;
+                color: #1b1b1b;
+            }
+            
+            .grid-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 40px;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 40px;
+            }
+            
+            .card {
+                border: 1px solid #e0e0e0;
+                border-radius: 12px;
+                padding: 20px;
+                text-align: center;
+                cursor: pointer;
+                transition: transform 0.2s, box-shadow 0.2s;
+                background-color: #ffffff;
+            }
+            
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+            
+            .placeholder-image {
+                width: 200px;
+                height: 200px;
+                background-color: #f0f0f0;
+                margin: 0 auto 15px;
+                border-radius: 8px;
+            }
+            
+            .card-title {
+                font-size: 1.2em;
+                color: #1b1b1b;
+                font-family: sans-serif;
+                font-weight: 600;
+            }
+            
+            
+            .modal{
+                display: none;
+                position: fixed;
+                opacity: 1;
+                width: 60%;
+                height: 65%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color:rgb(198, 193, 193);
+                border-radius: 15px;
+                opacity: 1;
+            }
+            
+            .modal-content {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                width: 100%;
+                height: 100%;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .btn-close {
+                position: absolute;
+                top: 15px;
+                right: 20px;
+                padding: 0.7rem;
+                border: none;
+                cursor: pointer;
+                border-radius: 25px;
+            }
+            
+            
+            
+            .boxes-modals {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+            }
+            
+            .container-left {
+                width: 50%;
+                height: 100%;
+                margin-right: 3rem;
+            }
+            
+            .placeholder-image-card {
+                width: 22rem;
+                height: 22rem;
+                background-color: #f0f0f0;
+                margin: 0 auto 15px;
+                border-radius: 8px;
+            }
+            
+            .container-right {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                text-align: center;
+                font-size: 1rem;
+                box-sizing: border-box;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                white-space: normal;
+                word-break: break-word;
+                line-height: 1.5;
+            }
+            
+            .container-right h2 {
+                margin-bottom: 3rem;
+                margin-top: -7rem;
+            }
+            
+            
+            .btn-apadrinhar {
+                padding: 1rem 2.3rem;
+                background-color: #D9D9D9;
+                border: none;
+                cursor: pointer;
+                font-size: 1rem;
+                margin-top: 1.6rem;
+                border-radius: 10px;
+            }
+            
+            .container-right {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                flex-direction: column;
+                padding: 2rem;
+                text-align: left;
+            }
+            
+            .container-right .info-box {
+                width: 100%;
+            }
+            
+            .container-right h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+                color: #1b1b1b;
+                font-family: sans-serif;
+            }
+            
+            .container-right p {
+                margin-bottom: 1rem;
+                font-size: 1rem;
+                color: #333;
+                line-height: 1.5;
+            }
+            
+            .btn-apadrinhar {
+                padding: 1rem 1.6rem;
+                background-color:rgb(0, 107, 46);
+                color: white;
+                border: none;
+                font-weight: bold;
+                font-size: 1.2rem;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: 0.3s ease;
+                padding-top: 15px;
+            }
+            
+            .btn-apadrinhar:hover {
+                background-color:rgb(0, 0, 0);
+            }
+
+            .btn-aleatorio {
+                padding: 1.2rem 1.3rem;
+                font-size: 1.2rem;
+                background-color:rgb(0, 107, 46);
+                color:rgb(255, 255, 255);
+                border: none;
+                border-radius: 12px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            
+            .btn-aleatorio:hover {
+                background-color:rgb(0, 0, 0);
+            }
+
+            .titulo h1{
+                font-family: sans-serif;
+                font-weight: 600;
+                text-align: center;
+                font-size: 3.3rem;
+            }   
+            
+            body{
+                font-family: sans-serif;
+            }
+
+            .info-box{
+                padding-right: 70px;
+                padding-top: 40px;
+                text-align: center;
+            }
+            
+        </style>
+    </head>
+    <body>    
+        {% include "partials/header.html" %}
+        <section class="titulo"><h1>Apadrinhe um sonho!</h1></section>
+
+        <div style="text-align: center; margin-bottom: 30px;">
+            <button id="btn-aleatorio" class="btn-aleatorio">Escolha por mim</button>
         </div>
-    </div>
-    <div class="grid-container">
-        {% for crianca in criancas %}
-        <div class="card" data-id="{{ crianca.id }}">
-            {% if crianca.foto %}
-                <div class="placeholder-image">
-                    <img src="{{ crianca.foto.url }}" alt="fotoDaCrianca{{ crianca.nome }}">
+        <div class="filtros-container" style="text-align: center; margin: 20px auto; max-width: 800px;" >
+            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                <div class="filtro-group">
+                    <label for="filtro-genero" style="display: block; margin-bottom: 8px; font-weight: bold;">Gênero</label>
+                    <select id="filtro-genero" class="filtro-select">
+                        <option value="todos">Todos</option>
+                        <option value="M">Menino</option>
+                        <option value="F">Menina</option>
+                    </select>
                 </div>
-            {% else %}
-                <div class="placeholder-image"></div>
-            {% endif %}
-            <h5 class="card-title">{{ crianca.nome }}, {{ crianca.idade }}</h5>
+                
+                <div class="filtro-group">
+                    <label for="filtro-idade" style="display: block; margin-bottom: 8px; font-weight: bold;">Idade</label>
+                    <select id="filtro-idade" class="filtro-select">
+                        <option value="todos">Todas</option>
+                        <option value="0-5">0-5 anos</option>
+                        <option value="6-10">6-10 anos</option>
+                        <option value="11-15">11-15 anos</option>
+                        <option value="16+">16+ anos</option>
+                    </select>
+                </div>
+                
+            </div>
         </div>
-        {% endfor %}
-    </div>
-
-    <section class="modals">
-        {% for crianca in criancas %}
-        <section class="modal" id="modal-{{ crianca.id }}">
-            <section class="modal-content">
-                <button class="btn-close" data-id="{{ crianca.id }}">X</button>
-                <section class="boxes-modals">
-                  
-                  <section class="container-left">
-                    <section class="placeholder-image-card">
-                      {% if crianca.foto %}
+        <div class="grid-container">
+            {% for crianca in criancas %}
+            <div class="card" data-id="{{ crianca.id }}" data-genero="{{ crianca.genero }}" data-idade="{{ crianca.idade }}">
+                {% if crianca.foto %}
+                    <div class="placeholder-image">
                         <img src="{{ crianca.foto.url }}" alt="fotoDaCrianca{{ crianca.nome }}">
-                      {% endif %}
-                    </section>
-                  </section>
-              
-                  
-                  <section class="container-right">
-                    <div class="info-box">
-                        <h2>{{ crianca.nome }} – {{ crianca.idade }} anos</h2>
-                        <p>{{ crianca.descricao }}</p>
-                        <p><b>Apadrinhe esse sonho!</b></p>
-                        {% if user.is_authenticated and not user.is_staff %}
-                            <a href="{% url 'apadrinhar_crianca' crianca.id %}">
-                                <button class="btn-apadrinhar">Quero Apadrinhar</button>
-                            </a>
-                        {% else %}
-                            <a href="{% url 'login_padrinho' %}">
-                                <button class="btn-apadrinhar">Quero Apadrinhar</button>
-                            </a>
-                        {% endif %}
-
                     </div>
-                  </section>
-                </section>
-              </section>
-                </section>
-               
+                {% else %}
+                    <div class="placeholder-image"></div>
+                {% endif %}
+                <h5 class="card-title">{{ crianca.nome }}, {{ crianca.idade }}</h5>
+            </div>
+            {% endfor %}
+        </div>
+
+        <section class="modals">
+            {% for crianca in criancas %}
+            <section class="modal" id="modal-{{ crianca.id }}">
+                <section class="modal-content">
+                    <button class="btn-close" data-id="{{ crianca.id }}">X</button>
+                    <section class="boxes-modals">
                     
-            </section>
-            </section>
-            
+                    <section class="container-left">
+                        <section class="placeholder-image-card">
+                        {% if crianca.foto %}
+                            <img src="{{ crianca.foto.url }}" alt="fotoDaCrianca{{ crianca.nome }}">
+                        {% endif %}
+                        </section>
+                    </section>
+                
+                    
+                    <section class="container-right">
+                        <div class="info-box">
+                            <h2>{{ crianca.nome }} – {{ crianca.idade }} anos</h2>
+                            <p>{{ crianca.descricao }}</p>
+                            <p><b>Apadrinhe esse sonho!</b></p>
+                            {% if user.is_authenticated and not user.is_staff %}
+                                <a href="{% url 'apadrinhar_crianca' crianca.id %}">
+                                    <button class="btn-apadrinhar">Quero Apadrinhar</button>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'login_padrinho' %}">
+                                    <button class="btn-apadrinhar">Quero Apadrinhar</button>
+                                </a>
+                            {% endif %}
+
+                        </div>
+                    </section>
+                    </section>
+                </section>
+                    </section>
+                
+                        
+                </section>
+                </section>
+                
+
+                
 
             
+            </section>
+            {% endfor %}
 
-           
-        </section>
-        {% endfor %}
-
-       
-    </section>
-    
-    <script>
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', () => {
-              const id = card.dataset.id;
-              const modal = document.getElementById(`modal-${id}`);
-              if (modal) modal.style.display = 'flex';
-            });
-          });
         
-          document.querySelectorAll('.btn-close').forEach(btn => {
-            btn.addEventListener('click', () => {
-              const id = btn.dataset.id;
-              const modal = document.getElementById(`modal-${id}`);
-              if (modal) modal.style.display = 'none';
+        </section>
+        
+        <script>
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('click', () => {
+                const id = card.dataset.id;
+                const modal = document.getElementById(`modal-${id}`);
+                if (modal) modal.style.display = 'flex';
+                });
             });
-          });
+            
+            document.querySelectorAll('.btn-close').forEach(btn => {
+                btn.addEventListener('click', () => {
+                const id = btn.dataset.id;
+                const modal = document.getElementById(`modal-${id}`);
+                if (modal) modal.style.display = 'none';
+                });
+            });
 
-          
-        document.getElementById('btn-aleatorio').addEventListener('click', () => {
-            const cards = document.querySelectorAll('.card');
-            if (cards.length === 0) return;
+            
+            document.getElementById('btn-aleatorio').addEventListener('click', () => {
+                const cards = document.querySelectorAll('.card');
+                if (cards.length === 0) return;
 
-            const indexaleatorio = Math.floor(Math.random() * cards.length);
-            const escolhido = cards[indexaleatorio];
-            const id = escolhido.dataset.id;
-            const modal = document.getElementById(`modal-${id}`);
+                const indexaleatorio = Math.floor(Math.random() * cards.length);
+                const escolhido = cards[indexaleatorio];
+                const id = escolhido.dataset.id;
+                const modal = document.getElementById(`modal-${id}`);
 
-            if (modal) modal.style.display = 'flex';
-        });
+                if (modal) modal.style.display = 'flex';
+            });
 
+            function aplicarFiltros() {
+                const generoSelecionado = document.getElementById('filtro-genero').value;
+                const idadeSelecionada = document.getElementById('filtro-idade').value;
 
-    </script>
-</body>
-</html>
+                document.querySelectorAll('.card').forEach(card => {
+                    const genero = card.getAttribute('data-genero');
+                    const idade = parseInt(card.getAttribute('data-idade'));
+
+                    let generoCond = generoSelecionado === 'todos' || genero === generoSelecionado;
+
+                    let idadeCond = false;
+                    if (idadeSelecionada === 'todos') {
+                        idadeCond = true;
+                    } else if (idadeSelecionada === '0-5') {
+                        idadeCond = idade >= 0 && idade <= 5;
+                    } else if (idadeSelecionada === '6-10') {
+                        idadeCond = idade >= 6 && idade <= 10;
+                    } else if (idadeSelecionada === '11-15') {
+                        idadeCond = idade >= 11 && idade <= 15;
+                    } else if (idadeSelecionada === '16+') {
+                        idadeCond = idade >= 16;
+                    }
+
+                    if (generoCond && idadeCond) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            document.getElementById('filtro-genero').addEventListener('change', aplicarFiltros);
+            document.getElementById('filtro-idade').addEventListener('change', aplicarFiltros);
+        </script>
+    </body>
+    </html>
