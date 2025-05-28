@@ -3,10 +3,16 @@ from django.contrib.auth.models import User
 
 
 class Crianca(models.Model):
+    GENERO_CHOICES = [
+    ('M', 'Masculino'),
+    ('F', 'Feminino'),
+    ('O', 'Outro'),
+    ]
     nome = models.CharField(max_length=100)
     idade = models.IntegerField()
     descricao = models.TextField()
     foto = models.ImageField(upload_to="fotos/", blank=True, null=True)
+    genero = models.CharField(max_length=1, choices=GENERO_CHOICES, default='O')
 
     def __str__(self):
         return self.nome
