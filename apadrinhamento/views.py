@@ -53,7 +53,23 @@ def lista_criancas(request):
     return render(request, 'lista_criancas.html', {'criancas': criancas})
 
 def homepage (request):
-    return render (request , 'home.html')
+    total_afilhados = Crianca.objects.count()
+    
+    afilhados_apadrinhados = Apadrinhamento.objects.values('crianca').distinct().count()
+    afilhados_disponiveis = total_afilhados - afilhados_apadrinhados
+    
+    
+    labels = ['Crianças apadrinhadas', 'Total de crianças']
+    data = [afilhados_apadrinhados, total_afilhados]
+    
+    
+    conteudo = {
+        'labels': labels,
+        'data': data,
+    }
+    
+    
+    return render (request , 'home.html', conteudo)
 
 def detalhes_crianca(request, crianca_id):
     crianca = get_object_or_404(Crianca, id=crianca_id)
