@@ -4,6 +4,14 @@ Esta aplicação web foi desenvolvida para a cadeira **Projetos 2** da **CESAR S
 
 Nosso projeto **Laço Solidare** visa automatizar os processos do sistema de apadrinhamento e prover, por meio da plataforma, troca de mensagens entre padrinhos e apadrinhados.
 
+### Principais Funcionalidaes da Aplicação
+- Automatização do processo de Apadrinhamento 
+- Armazenamento no banco de dados
+- Processo completo de Apadrinhamento
+- Apadrinhamento Aleatório
+- Gerenciamento dos padrinhos e crianças
+- Filtragem de crianças a serem apadrinhadas
+
 ---
 
 ## 👩‍💻 Equipe
@@ -34,7 +42,7 @@ Nosso projeto **Laço Solidare** visa automatizar os processos do sistema de apa
 
 ### 📜 Histórias de Usuário - Funcionalidades do Site "Laço Solidare"
 
-### História 02: Escolher uma criança de maneira aleatória
+#### História 02: Escolher uma criança de maneira aleatória
 
 **Cenário 1**: Como usuário, ao visualizar as crianças na página de apadrinhamento do site “Laço Solidare”, gostaria de escolher uma criança de maneira aleatória, para não precisar tomar essa decisão tão difícil.
 
@@ -42,7 +50,7 @@ Nosso projeto **Laço Solidare** visa automatizar os processos do sistema de apa
 - **Quando** o usuário seleciona o botão “Escolha por Mim”  
 - **Então** o site lhe indica uma criança para que ele possa apadrinhar  
 
-### História 03: Visualizar a descrição das crianças
+#### História 03: Visualizar a descrição das crianças
 
 **Cenário 1**: Como usuário, ao visualizar as crianças na página de apadrinhamento do site “Laço Solidare”, gostaria de poder ver mais informações sobre ela, para conseguir escolher quem quero apadrinhar.
 
@@ -131,5 +139,80 @@ Nosso projeto **Laço Solidare** visa automatizar os processos do sistema de apa
 ### 👯‍♂️ Relato de programação
 
 📄 [Documento da Programação em Par](https://docs.google.com/document/d/14FbzH0i16PJSR0gSy0T5qJmpo38lusP7hxhiUT6zfVk/edit?usp=sharing)
+
+</details>
+
+<details>
+<summary><strong>✅ SR2</strong></summary>
+
+### 📜 Histórias de Usuário Implementadas
+
+#### História 01: Como usuário, eu gostaria de escolher uma criança para apadrinhar 
+#### História 04: Como usuário, eu gostaria de filtrar as crianças por idade e/ou por gênero
+#### História 05: Como padrinho, eu gostaria de visualizar as crianças que apadrinhei 
+#### História 06: Como administrador, eu gostaria de gerenciar os padrinhos
+#### História 07: Como administrador, eu gostaria de cadastrar crianças
+#### História 08: Como administrador, eu gostaria de gerenciar as crianças
+
+🔗 [Link das Histórias de Usuário e Cenários Atualizados](https://docs.google.com/document/d/1u4eRhVVwZgFhZe1qXeQgEIQJguWyihG8sPGUJnuedxc/edit?usp=sharing)
+
+---
+
+### ✏️ Sketches
+
+![Sketche1](media/sketche1.jpg)
+
+---
+
+### 🎥 Screencast
+
+[Screencast protótipo do Figma]()
+
+[Screencast Aplicação]()
+
+[Screencast Testes Automatizados]()
+
+---
+
+### 📋 Diagrama de Atividades
+
+![Diagrama de Atividades](media/diagramasr1.jpg)
+
+---
+
+### 📌 Backlog e Sprint
+
+#### Backlog:
+![Backlog1]()
+
+#### Sprint SR1:
+![Sprint]()
+
+[Link para acessar o JIRA](https://focustimenow.atlassian.net/jira/software/projects/LS/boards/34?sprintStarted=true)
+
+---
+
+### 🐛 Issue/Bug Tracker
+
+* Issue #2  
+  ![Issue #2](media/issue-1/bug2.png)
+
+---
+
+### 🚀 Deployment
+
+🔗 [Site no Ar]()
+
+🔗 [Página do Admin]()
+
+#### Dados Admin
+- **Login**: G5PJLACOSOLIDAREADMIN  
+- **Senha**: #GRUPO5LS2025
+
+---
+
+### 👯‍♂️ Relato de programação
+
+📄 [Documento da Programação em Par]()
 
 </details>
