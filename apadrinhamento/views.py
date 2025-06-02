@@ -13,6 +13,7 @@ from django.http import HttpResponseForbidden
 from django.contrib.auth import authenticate, login
 
 from .forms import PadrinhoRegistrationForm
+from .forms import CriancaForm
 
 def registrar_padrinho(request):
     if request.method == "POST":
@@ -179,3 +180,16 @@ def apadrinhar_crianca(request, crianca_id):
     messages.success(request, "Apadrinhamento realizado com sucesso!")
     return redirect('pagina_exibicao')
 
+
+@login_required
+def cadastrar_crianca(request):
+    if request.method == "POST":
+        form = CriancaForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Criança cadastrada com sucesso!")
+            return redirect('gerenciar_afilhados')
+    else:
+        form = CriancaForm()
+
+    return render(request, "cadastrar_crianca.html", {"form": form})
