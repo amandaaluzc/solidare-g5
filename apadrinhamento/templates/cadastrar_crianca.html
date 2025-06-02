@@ -20,7 +20,7 @@
                         <a href="{% url 'home' %}"><button>Home</button></a>
                     </section>
                     <section class="gerenciar">
-                        <a href="{% url 'escolha_admin' %}#sobre"><button>gerenciar</button></a>
+                        <a href="{% url 'escolha_admin' %}#sobre"><button>Gerenciar</button></a>
                     </section>
                     <section class="cadastrar">
                         <a href="{% url 'gerenciar_afilhados' %}"><button>Voltar à lista</button></a>
@@ -32,7 +32,7 @@
 
     <section class="box-content">
         <section class="content">
-            <h2>Cadastrar Nova Criança</h2>
+            <h2>Cadastrar Criança</h2>
 
             <form method="POST" enctype="multipart/form-data" novalidate>
                 {% csrf_token %}
