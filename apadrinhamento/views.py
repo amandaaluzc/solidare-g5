@@ -13,6 +13,7 @@ from django.http import HttpResponseForbidden
 from django.contrib.auth import authenticate, login
 
 from .forms import PadrinhoRegistrationForm
+from .forms import CriancaForm
 
 def registrar_padrinho(request):
     if request.method == "POST":
@@ -179,3 +180,46 @@ def apadrinhar_crianca(request, crianca_id):
     messages.success(request, "Apadrinhamento realizado com sucesso!")
     return redirect('pagina_exibicao')
 
+
+@login_required
+def cadastrar_crianca(request):
+    if request.method == "POST":
+        form = CriancaForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Criança cadastrada com sucesso!")
+            return redirect('gerenciar_afilhados')
+    else:
+        form = CriancaForm()
+
+    return render(request, "cadastrar_crianca.html", {"form": form})
+
+@login_required
+def deletar_crianca(request, crianca_id):
+    if not request.user.is_staff:
+        return HttpResponseForbidden("Acesso restrito a administradores.")
+
+    crianca = get_object_or_404(Crianca, id=crianca_id)
+    Apadrinhamento.objects.filter(crianca=crianca).delete()
+
+    crianca.delete()
+    messages.success(request, f"Criança “{crianca.nome}” excluída com sucesso.")
+    return redirect('gerenciar_afilhados')
+
+def editar_crianca(request, crianca_id):
+    if not request.user.is_staff:
+        return HttpResponseForbidden("Acesso restrito a administradores.")
+
+    crianca = get_object_or_404(Crianca, id=crianca_id)
+
+    if request.method == "POST":
+        form = CriancaForm(request.POST, request.FILES, instance=crianca)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f"Criança “{crianca.nome}” atualizada com sucesso!")
+            return redirect('gerenciar_afilhados')
+        else:
+            messages.error(request, "Não foi possível atualizar. Verifique os dados.")
+            return redirect('gerenciar_afilhados')
+    else:
+        return redirect('gerenciar_afilhados')
