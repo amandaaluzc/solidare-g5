@@ -6,9 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciar_padrinhos</title>
+    <title>Gerenciar Afilhados</title>
     
-    {%block extra_css %}
+    {% block extra_css %}
     <link rel="stylesheet" href="{% static 'styles/gerenciar_afilhado.css' %}">
     {% endblock %}
 </head>
@@ -19,24 +19,23 @@
             <header>
                 <section class="container-pai">
                     <section class="navbar">
-                    <section class="logo">
-                        <a href="{% url 'home' %}">
-                        <img src="{% static 'img/logo-solidare2.png' %}" alt="Logo Solidare">
-                        </a>
-                    </section>
-
-                    <section class="home-links">
-                        <section class="home">
-                        <a href="{% url 'home' %}"><button>Home</button></a>
-                        </section>
-                        <section class="gerenciar">
-                        <a href="{% url 'escolha_admin' %}#sobre"><button>gerenciar</button></a>
+                        <section class="logo">
+                            <a href="{% url 'home' %}">
+                                <img src="{% static 'img/logo-solidare2.png' %}" alt="Logo Solidare">
+                            </a>
                         </section>
 
-                        <section class="cadastrar">
-                        <a href="{% url 'cadastrar_crianca' %}"><button>Cadastrar</button></a>
+                        <section class="home-links">
+                            <section class="home">
+                                <a href="{% url 'home' %}"><button>Home</button></a>
+                            </section>
+                            <section class="gerenciar">
+                                <a href="{% url 'escolha_admin' %}#sobre"><button>gerenciar</button></a>
+                            </section>
+                            <section class="cadastrar">
+                                <a href="{% url 'cadastrar_crianca' %}"><button>Cadastrar</button></a>
+                            </section>
                         </section>
-                    </section>
                     </section>
                 </section>
             </header>
@@ -67,9 +66,7 @@
                                         {% endif %}
                                         
                                         <td>
-                                            <button type="button" class="edit-button" onclick="openModal('{{ ap.crianca.id }}')">
-                                                <img src="{% static 'img/edit.png' %}" alt="Editar">
-                                            </button>
+                                            <button type="button" class="edit-button" onclick="openModal('{{ ap.crianca.id }}','{{ ap.crianca.nome|escapejs }}','{{ ap.crianca.idade }}','{{ ap.crianca.genero }}','{{ ap.crianca.descricao|escapejs }}','{% if ap.crianca.foto %}{{ ap.crianca.foto.url }}{% else %}{% endif %}')"><img src="{% static 'img/edit.png' %}" alt="Editar"></button>
                                             <button type="button" onclick="openDeleteConfirmModal('{{ ap.crianca.id }}')">
                                                 <img src="{% static 'img/delete.png' %}" alt="Deletar">
                                             </button>
@@ -106,25 +103,39 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="idade">Idade:</label>
-                                    <input type="number" id="idade" name="idade">
+                                    <input type="number" id="idade" name="idade" class="form-control" min="0">
                                 </div>
+                                <div class="form-group">
+                                    <label for="genero">Gênero:</label>
+                                    <select id="genero" name="genero" class="form-control">
+                                        <option value="M">Masculino</option>
+                                        <option value="F">Feminino</option>
+                                        <option value="O">Outro</option>
+                                    </select>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="descricao">Descrição:</label>
-                                    <textarea id="descricao" name="descricao"></textarea>
+                                    <textarea id="descricao" name="descricao" rows="4" class="form-control"></textarea>
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="urlFoto">URL da foto:</label>
-                                    <input type="text" id="urlFoto" name="urlFoto">
+                                    <label for="foto">Foto (novo upload):</label>
+                                    <input type="file" id="foto" name="foto" class="form-control">
+                                </div>
+
+                                <!-- Preview da foto atual -->
+                                <div id="currentPhotoPreview" style="margin-top:8px;">
+                                    <img id="previewImg" src="" alt="Foto atual" width="120" style="display:none;">
                                 </div>
                             </form>
                         </div>
                         <div class="preview-image">
-
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" form="editForm" class="btn-save">Salvar</button>
-                        <button type="button" class="btn-delete">Deletar</button>
+                        <button type="button" class="btn-cancel" onclick="closeEditModal()">Cancelar</button>
                     </div>
                 </div>
             </div>
@@ -144,43 +155,68 @@
                 </div>
             </div>
 
+            
+
             <script>
-                function openModal(criancaId) {
-                    const modal = document.getElementById('editModal');
-                    modal.style.display = 'block';
-                }
+    const editUrlPattern   = "{% url 'editar_crianca' 0 %}";
+    const deleteUrlPattern = "{% url 'deletar_crianca' 0 %}";
 
-                function openDeleteConfirmModal(criancaId) {
-                    const modal = document.getElementById('deleteConfirmModal');
-                    modal.style.display = 'block';
-                    
-                    const btnNo = modal.querySelector('.btn-confirm-no');
-                    btnNo.onclick = function() {
-                        modal.style.display = 'none';
-                    }
+    function openModal(criancaId, nome, idade, genero, descricao, fotoUrl) {
+        const form = document.getElementById('editForm');
+        form.action = editUrlPattern.replace('0', criancaId);
 
-                    const btnYes = modal.querySelector('.btn-confirm-yes');
-                    btnYes.onclick = function() {
-                        modal.style.display = 'none';
-                    }
-                }
+        document.getElementById('nome').value      = nome;
+        document.getElementById('idade').value     = idade;
+        document.getElementById('descricao').value = descricao;
+        document.getElementById('genero').value    = genero;
 
-                window.onclick = function(event) {
-                    const editModal = document.getElementById('editModal');
-                    const deleteModal = document.getElementById('deleteConfirmModal');
-                    
-                    if (event.target == editModal) {
-                        editModal.style.display = 'none';
-                    }
-                    if (event.target == deleteModal) {
-                        deleteModal.style.display = 'none';
-                    }
-                }
-            </script>
+        const previewImg = document.getElementById('previewImg');
+        if (fotoUrl) {
+            previewImg.src = fotoUrl;
+            previewImg.style.display = 'inline';
+        } else {
+            previewImg.style.display = 'none';
+        }
+
+        document.getElementById('editModal').style.display = 'block';
+    }
+
+    function closeEditModal() {
+        document.getElementById('editModal').style.display = 'none';
+    }
+
+    function openDeleteConfirmModal(criancaId) {
+        const modal = document.getElementById('deleteConfirmModal');
+        modal.style.display = 'block';
+
+        const btnNo = modal.querySelector('.btn-confirm-no');
+        btnNo.onclick = function() {
+            modal.style.display = 'none';
+        };
+
+        const btnYes = modal.querySelector('.btn-confirm-yes');
+        btnYes.onclick = function() {
+            const url = deleteUrlPattern.replace('0', criancaId);
+            window.location.href = url;
+        };
+    }
+
+    window.onclick = function(event) {
+        const editModal   = document.getElementById('editModal');
+        const deleteModal = document.getElementById('deleteConfirmModal');
+        if (event.target == editModal) {
+            editModal.style.display = 'none';
+        }
+        if (event.target == deleteModal) {
+            deleteModal.style.display = 'none';
+        }
+    };
+</script>
+
 
         {% else %}
-            <h1>Usuario negado</h1>
+            <h1>Usuário negado</h1>
         {% endif %}
-    {% endblock content %} 
+    {% endblock content %}
 </body>
 </html>
