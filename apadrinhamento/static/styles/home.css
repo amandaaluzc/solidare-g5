@@ -199,4 +199,19 @@
     width: 60%;
 }
 
+.btn-admin {
+    width: 4rem;
+    height: 2rem;
+    border: solid 1px black;
+    background-color: rgb(204, 203, 203) ;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 400;
+}
+
+.btn-admin:hover {
+    background-color: rgb(180, 178, 178) ;
+    transition: 0.7s;
+}
 

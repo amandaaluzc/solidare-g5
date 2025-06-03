@@ -3,10 +3,16 @@ from django.contrib.auth.models import User
 
 
 class Crianca(models.Model):
+    GENERO_CHOICES = [
+    ('M', 'Masculino'),
+    ('F', 'Feminino'),
+    ('O', 'Outro'),
+    ]
     nome = models.CharField(max_length=100)
     idade = models.IntegerField()
     descricao = models.TextField()
     foto = models.ImageField(upload_to="fotos/", blank=True, null=True)
+    genero = models.CharField(max_length=1, choices=GENERO_CHOICES, default='O')
 
     def __str__(self):
         return self.nome
@@ -32,4 +38,4 @@ class Apadrinhamento(models.Model):
     data_apadrinhamento = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.padrinho.nome} apadrinhou {self.crianca.nome}"
+        return f"{self.padrinho.__str__()} apadrinhou {self.crianca}"

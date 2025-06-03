@@ -1,0 +1,164 @@
+{% extends 'escolha_admin.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar_padrinhos</title>
+    
+    {%block extra_css %}
+    <link rel="stylesheet" href="{% static 'styles/gerenciar_padrinho.css' %}">
+    {% endblock %}
+</head>
+
+<body>
+    {% block content %}
+        {% if user.is_authenticated %}
+            <header>
+                <section class="container-pai">
+                    <section class="navbar">
+                    <section class="logo">
+                        <a href="{% url 'home' %}">
+                        <img src="{% static 'img/logo-solidare2.png' %}" alt="Logo Solidare">
+                        </a>
+                    </section>
+
+                    <section class="home-links">
+                        <section class="home">
+                        <a href="{% url 'home' %}"><button>Home</button></a>
+                        </section>
+                        <section class="gerenciar">
+                        <a href="{% url 'escolha_admin' %}#sobre"><button>Gerenciar</button></a>
+                        </section>
+
+                    </section>
+                </section>
+            </header>
+
+            <section class="box-content">
+                <section class="content">
+                    <h2>Gerenciar Padrinhos</h2>
+                
+                    <section class="tabela">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Afilhados</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for ap in apadrinhamentos %}
+                                    <tr>
+                                        <td>{{ ap.padrinho.user.get_full_name }}</td>
+                                        <td>{{ ap.crianca.nome }}</td>
+                                        <td>
+                                            <button type="button" class="edit-button" onclick="openModal('{{ ap.padrinho.id }}')">
+                                                <img src="{% static 'img/edit.png' %}" alt="Editar">
+                                            </button>
+                                            <button type="button" onclick="openDeleteConfirmModal('{{ ap.padrinho.id }}')">
+                                                <img src="{% static 'img/delete.png' %}" alt="Deletar">
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="3">Nenhum padrinho registrado.</td>
+                                    </tr>
+                                    
+                                    
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </section>
+                </section>
+            </section>
+
+            <div id="editModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Editar Padrinho</h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-container">
+                            <form id="editForm" method="POST">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="nome">Nome:</label>
+                                    <input type="text" id="nome" name="nome">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" id="email" name="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefone">Telefone:</label>
+                                    <input type="tel" id="telefone" name="telefone">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" form="editForm" class="btn-save">Salvar</button>
+                        <button type="button" class="btn-delete">Deletar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="deleteConfirmModal" class="modal">
+                <div class="modal-content delete-confirm">
+                    <div class="modal-header">
+                        <h2>Confirmar Exclusão</h2>
+                    </div>
+                    <div class="modal-body">
+                        <p>Você realmente deseja excluir este padrinho?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-confirm-yes">Sim</button>
+                        <button type="button" class="btn-confirm-no">Não</button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function openModal(padrinhoId) {
+                    const modal = document.getElementById('editModal');
+                    modal.style.display = 'block';
+                }
+
+                function openDeleteConfirmModal(padrinhoId) {
+                    const modal = document.getElementById('deleteConfirmModal');
+                    modal.style.display = 'block';
+                    
+                    const btnNo = modal.querySelector('.btn-confirm-no');
+                    btnNo.onclick = function() {
+                        modal.style.display = 'none';
+                    }
+
+                    const btnYes = modal.querySelector('.btn-confirm-yes');
+                    btnYes.onclick = function() {
+                        modal.style.display = 'none';
+                    }
+                }
+                window.onclick = function(event) {
+                    const editModal = document.getElementById('editModal');
+                    const deleteModal = document.getElementById('deleteConfirmModal');
+                    
+                    if (event.target == editModal) {
+                        editModal.style.display = 'none';
+                    }
+                    if (event.target == deleteModal) {
+                        deleteModal.style.display = 'none';
+                    }
+                }
+            </script>
+        {% else %}
+            <h1>Usuario negado</h1>
+        {% endif %}
+    {% endblock content %} 
+</body>
+</html>

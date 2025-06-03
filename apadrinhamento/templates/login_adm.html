@@ -1,0 +1,30 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Admin</title>
+  <link rel="stylesheet" href="{% static 'styles/login-adm.css' %}">
+
+</head>
+<body>
+    {% include "partials/header.html" %}
+    
+    <section class="box-content">
+        <form method="POST">
+            {% csrf_token %}   
+
+            <label for="Nome">Usuário</label>
+            <input type="text" class="nome-login" id="nome-login" name="nome" placeholder="Nome de usuário" required>
+            <label for="password">Senha</label>
+            <input type="password" class="senha-login" id="senha-login" name="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+            
+    </section>
+  
+</body>
+</html>

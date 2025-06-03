@@ -1,0 +1,210 @@
+.box-content {
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 0;
+}
+
+.content h2 {
+    margin-bottom: 4rem;
+    font-size: 2rem;
+    font-weight: bold;
+} 
+
+.tabela {
+    height: auto;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    border: solid 1px rgb(198, 198, 198);
+    border-radius: 12px;
+}
+
+.tabela table{
+    width: 100%;
+    border-radius: 10px;
+    border-radius: 12px;
+    overflow: hidden;
+    border-collapse: collapse;
+    
+}
+
+thead {
+    background-color: #e6e6e6;
+    font-weight: bold;
+}
+
+th  {
+    padding: 16px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+td  {
+    padding: 16px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+
+tbody button {
+    background-color: #f9fafb ;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+tbody img {
+    width: 18px;
+    height: 18px;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    width: 800px;
+    margin: 5% auto;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header h2 {
+    font-size: 28px;
+    margin-bottom: 35px;
+    text-align: center;
+    color: #333;
+}
+
+.modal-body {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.form-container {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.form-group {
+    display: flex;
+    margin-bottom: 25px;
+    align-items: flex-start;
+}
+
+.form-group label {
+    width: 120px;
+    font-size: 16px;
+    padding-top: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+.form-group input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #0203026d;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+.modal-footer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.modal-footer button {
+    padding: 10px 35px;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-save {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-save:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
+}
+
+.btn-delete:hover {
+    background-color: #e53935;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(244, 67, 54, 0.2);
+}
+
+.delete-confirm {
+    width: 400px !important;
+    text-align: center;
+}
+
+.delete-confirm .modal-body {
+    display: block;
+    margin: 20px 0;
+}
+
+.delete-confirm .modal-body p {
+    font-size: 18px;
+    color: #333;
+}
+
+.btn-confirm-yes {
+    background-color: #36f436 !important;
+    color: white !important;
+}
+
+.btn-confirm-no {
+    background-color: #ec3b3b !important;
+    color: white !important;
+}
+
+.btn-confirm-yes:hover {
+    background-color: #27b425 !important;
+}
+
+.btn-confirm-no:hover {
+    background-color: #ac2525 !important;
+}

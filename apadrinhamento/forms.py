@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from .models import Padrinho
+from .models import Padrinho, Crianca
 
 class PadrinhoRegistrationForm(forms.Form):
     # Dados de login / usuário -----------------
@@ -30,3 +30,21 @@ class PadrinhoRegistrationForm(forms.Form):
         super().clean()
         if self.cleaned_data.get("password1") != self.cleaned_data.get("password2"):
             self.add_error("password2", "As senhas não conferem.")
+
+class CriancaForm(forms.ModelForm):
+    class Meta:
+        model = Crianca
+        fields = ["nome", "idade", "genero", "descricao", "foto"]
+        widgets = {
+            "nome": forms.TextInput(attrs={"class": "form-control"}),
+            "idade": forms.NumberInput(attrs={"class": "form-control", "min": 0}),
+            "genero": forms.Select(attrs={"class": "form-control"}),
+            "descricao": forms.Textarea(attrs={"class": "form-control", "rows": 4}),
+            # o campo "foto" já usa ClearableFileInput por padrão
+        }
+
+    def clean_idade(self):
+        idade = self.cleaned_data.get("idade")
+        if idade is not None and idade < 0:
+            raise ValidationError("Idade deve ser um número não-negativo.")
+        return idade
