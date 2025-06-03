@@ -19,4 +19,7 @@ urlpatterns = [
     path('criancas/<int:crianca_id>/excluir/', views.deletar_crianca, name='deletar_crianca'),
     path ('gerenciar_padrinhos/' , login_required(views.gerenciar_padrinhos) , name='gerenciar_padrinhos'),
     path ('gerenciar_afilhados/' , login_required(views.gerenciar_afilhados) , name='gerenciar_afilhados'),
+    path('deletar-padrinho/<int:padrinho_id>/', views.deletar_padrinho, name='deletar_padrinho'),
+    path('editar-padrinho/<int:padrinho_id>/', views.editar_padrinho, name='editar_padrinho'),
+    path('api/padrinho/<int:padrinho_id>/', views.api_padrinho, name='api_padrinho'),
 ]
