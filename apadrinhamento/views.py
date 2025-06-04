@@ -54,3 +54,6 @@ def detalhes_crianca(request, crianca_id):
 def pagina_exibicao(request):
     criancas = Crianca.objects.all()
     return render(request, 'pagina_exibição.html', {'criancas': criancas})
+
+def pagamento(request):
+    return render(request, "pagamento.html")
