@@ -6,7 +6,7 @@ Nosso projeto **Laço Solidare** visa automatizar os processos do sistema de apa
 
 ### Principais Funcionalidaes da Aplicação
 - Automatização do processo de Apadrinhamento 
-- Armazenamento no banco de dados
+- Armazenamento no banco de dados.
 - Processo completo de Apadrinhamento
 - Apadrinhamento Aleatório
 - Gerenciamento dos padrinhos e crianças
