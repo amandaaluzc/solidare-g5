@@ -51,7 +51,6 @@
                                     <th>Nome</th>
                                     <th>Status</th>
                                     <th>Ações</th>
-                                    <th>Imagem</th>
                                 </tr>
                             </thead>
 
@@ -69,11 +68,6 @@
                                             <button type="button" class="edit-button" onclick="openModal('{{ ap.crianca.id }}','{{ ap.crianca.nome|escapejs }}','{{ ap.crianca.idade }}','{{ ap.crianca.genero }}','{{ ap.crianca.descricao|escapejs }}','{% if ap.crianca.foto %}{{ ap.crianca.foto.url }}{% else %}{% endif %}')"><img src="{% static 'img/edit.png' %}" alt="Editar"></button>
                                             <button type="button" onclick="openDeleteConfirmModal('{{ ap.crianca.id }}')">
                                                 <img src="{% static 'img/delete.png' %}" alt="Deletar">
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button type="button">
-                                                <img src="{% static 'img/download.png' %}" alt="Download">
                                             </button>
                                         </td>
                                     </tr>
