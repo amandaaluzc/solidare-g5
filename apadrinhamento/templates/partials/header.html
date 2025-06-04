@@ -1,0 +1,36 @@
+{% load static %}
+
+<header>
+  <link rel="stylesheet" href="{% static 'styles/header.css' %}">
+  <section class="container-pai">
+    <section class="navbar">
+      <section class="logo">
+        <a href="{% url 'home' %}">
+          <img src="{% static 'img/logo-solidare2.png' %}" alt="Logo Solidare"></img>
+        </a>
+      </section>
+
+      <section class="home-links">
+        <section class="home">
+          <a href="{% url 'home' %}"><button>Home</button></a>
+        </section>
+        <section class="sobre">
+          <a href="{% url 'home' %}#sobre"><button>Sobre</button></a>
+        </section>
+
+        {% if user.is_authenticated %}
+          <span class="ola">Olá, {{ user.first_name }}!</span>
+          <a href="{% url 'logout_padrinho' %}"><button>Sair</button></a>
+        {% else %}
+          <section class="login">
+            <a href="{% url 'login_padrinho' %}"><button>Login</button></a>
+          </section>
+        {% endif %}
+
+        <section class="apadrinhe">
+          <a href="{% url 'pagina_exibicao' %}"><button>Apadrinhe</button></a>
+        </section>
+      </section>
+    </section>
+  </section>
+</header>

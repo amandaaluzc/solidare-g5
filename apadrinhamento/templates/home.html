@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>homepage</title>
+        <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+    </head>
+    <body>
+        {% include "partials/header.html" %}
+    <main>
+        <section class="boas-vindas">
+            <section class="crianca">
+                <img src="{% static "img/crianca1.png" %}" class="img-crianca">    
+            </section>
+            <section class="laco-solidare">
+                <h1>Laço Solidare</h1>
+                <p><b>Transforme vidas</b>: ajude crianças e adolescentes a alcançarem novas oportunidades e construírem um futuro melhor. Torne-se padrinho ou madrinha e faça parte dessa mudança.</p>
+                <section class="apadrinhe">
+                    <a href="{% url 'pagina_exibicao' %}"><button>Torne-se padrinho</button></a>
+                </section>
+            </section>
+        </section>
+
+        <section class="info">
+            <p class="texto-info">Como Funciona</p>
+            <section class="container-infos">
+                <section class="apadrinhe">
+                    <img src="{% static "img\apadrinhe.png" %}">
+                    <h3>Apadrinhe</h3>
+                    <p>Escolha uma crianca <br/> para apoiar</p>
+                </section>
+
+                <section class="contribua">
+                    <img src="{% static "img\contribua.png" %}">
+                    <h3>Contribua</h3>
+                    <p>Forneça ajuda finan-<br/>ceira mensal</p>
+                </section>
+
+                <section class="acompanhe">
+                    <img src="{% static "img\acompanhe.png" %}">
+                    <h3>Acompanhe</h3>
+                    <p>Veja o progresso da<br/> criança apadrinhada</p>
+                </section>
+            </section>
+        </section>
+
+        
+        <section id="sobre">
+        <section class="sobre-pai">
+            <h1>Sobre o Projeto</h1>
+                <section class="conteudo-sobre">
+                <section class="missao">
+                    <h2>Missão</h2>                
+                    <p>
+                      O <strong>Laço Solidare</strong> é o projeto de apadrinhamento do <strong>Instituto Solidare</strong>, criado para fortalecer o desenvolvimento de crianças e adolescentes em situação de vulnerabilidade.
+                    </p>                  
+                    <p>
+                      Mais do que apoio financeiro, o apadrinhamento é um gesto de cuidado e presença. É fazer parte da realização de sonhos, promovendo oportunidades e esperança para quem mais precisa.
+                    </p>                  
+                    <p>
+                      Ao se tornar padrinho ou madrinha, você contribui diretamente para a formação de cidadãos e cidadãs mais conscientes, seguros e felizes.
+                    </p>                  
+                    <p><strong>Crie um laço e transforme vidas!</strong></p>                  
+                    <a href="{% url 'pagina_exibicao' %}"><button>Torne-se padrinho</button></a>
+                </section>
+        
+                <section class="img-apadrinhamento">
+                    <img src="{% static 'img/logo-solidare.png' %}" class="img-crianca">   
+                </section>
+            </section>
+        </section>
+        </section>
+        
+
+
+        <section class="footer">
+            <a  href="{% url 'login_admin' %}"><button class="btn-admin">Admin</button></a>
+            <h3>Contato</h3>
+            <section class="redes-sociais">
+                <img src="{% static "img\twitter.png" %}">
+                <img src="{% static "img\facebook.png" %}">
+                <img src="{% static "img\instagram.png" %}">
+            </section>
+        </section>
+    </main>
+
+</body>
+</html>

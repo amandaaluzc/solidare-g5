@@ -1,44 +1,18 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
-    <link rel="stylesheet" href="{% static 'styles/registrarpadrinhos.css' %}">
-</head>
-<body>
-<header>
-    <section class="container-pai">
-        <section class="navbar">
-            <section class="logo">
-                <img src="{% static 'img/logo.png' %}">
-            </section>
-            <section class="home-links">
-                <section class="home">
-                    <a href="{% url 'home' %}"><button>Home</button></a>
-                </section>
-                <section class="sobre">
-                    <button><a href="#sobre"></a>Sobre</button>
-                </section>
-                <section class="sign in">
-                    <button><a href="{% url 'home' %}"></a>Sign in</button>
-                </section>
-                <section class="sign up">
-                    <a href="{% url 'cadastro_padrinho' %}"><button>Sign up</button></a>
-                </section>
-                <section class="apadrinhe">
-                    <a href="{% url 'pagina_exibicao' %}"><button>Apadrinhe</button></a>
-                </section>
-            </section>
-        </section>
-    </section>
-</header>
-
-<main>
-    <div class="container">
-        <div class="form-box">
-            <form method="POST">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cadastro</title>
+        <link rel="stylesheet" href="{% static 'styles/registrarpadrinhos.css' %}">
+    </head>
+    <body>
+        {% include "partials/header.html" %}
+        <main>
+            <div class="container">
+                <div class="form-box">
+                    <form method="POST">
                 {% csrf_token %}
                 {% if messages %}
                     <ul class="messages">

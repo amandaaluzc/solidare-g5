@@ -1,0 +1,90 @@
+{% extends 'escolha_admin.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'styles/gerenciar_afilhado.css' %}">
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <header>
+        <section class="container-pai">
+            <section class="navbar">
+                <section class="logo">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'img/logo-solidare2.png' %}" alt="Logo Solidare">
+                    </a>
+                </section>
+                <section class="home-links">
+                    <section class="home">
+                        <a href="{% url 'home' %}"><button>Home</button></a>
+                    </section>
+                    <section class="gerenciar">
+                        <a href="{% url 'escolha_admin' %}#sobre"><button>Gerenciar</button></a>
+                    </section>
+                    <section class="cadastrar">
+                        <a href="{% url 'gerenciar_afilhados' %}"><button>Voltar à lista</button></a>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </header>
+
+    <section class="box-content">
+        <section class="content">
+            <h2>Cadastrar Criança</h2>
+
+            <form method="POST" enctype="multipart/form-data" novalidate>
+                {% csrf_token %}
+
+                <div class="form-group">
+                    {{ form.nome.label_tag }}<br>
+                    {{ form.nome }}
+                    {% if form.nome.errors %}
+                        <div class="error">{{ form.nome.errors.0 }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.idade.label_tag }}<br>
+                    {{ form.idade }}
+                    {% if form.idade.errors %}
+                        <div class="error">{{ form.idade.errors.0 }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.genero.label_tag }}<br>
+                    {{ form.genero }}
+                    {% if form.genero.errors %}
+                        <div class="error">{{ form.genero.errors.0 }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.descricao.label_tag }}<br>
+                    {{ form.descricao }}
+                    {% if form.descricao.errors %}
+                        <div class="error">{{ form.descricao.errors.0 }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.foto.label_tag }}<br>
+                    {{ form.foto }}
+                    {% if form.foto.errors %}
+                        <div class="error">{{ form.foto.errors.0 }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-footer">
+                    <button type="submit" class="btn-cadastrar">Cadastrar</button>
+                </div>
+
+            </form>
+        </section>
+    </section>
+{% else %}
+    <h1>Usuário não autenticado</h1>
+{% endif %}
+{% endblock %}

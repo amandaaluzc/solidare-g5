@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.boas-vindas button, .missao button{
+    font-family: sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 15px;
+    padding: 0.8rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+
+}
+
+.apadrinhe button, .missao button{
+    padding: 1rem;
+    background-color: #009640;
+    color: #ffffff;
+}
+
+.crianca{
+    flex: 2;
+}
+
+.img-crianca {
+   width: 80%;
+}
+
+.boas-vindas {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 30px 160px 80px 10px;
+    background-color: #7cc1f388;   
+}
+
+.laco-solidare{
+    flex: 1;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: 500;
+    padding: 0 20px;
+}
+
+.laco-solidare h1{
+    font-size: 4.5rem;
+    letter-spacing: -3px;
+    color: #000000;
+}
+
+.laco-solidare p{
+    font-size: 1.5rem;
+    line-height: 1.8;
+    padding-top: 0px;
+}
+
+
+.texto-info {
+    margin: 4rem 0;
+    font-size: 3.3rem;
+    font-weight: 800;
+    align-items: center;
+    color:  #26717e;
+    text-align: center;
+}
+
+.container-infos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 5rem;
+    margin: 1 4rem;
+    text-align: center;
+}
+
+.container-infos h3{
+    font-size: 2.4rem;
+    color: #26717e;
+    margin-bottom: -0.5rem;
+}
+
+.container-infos p {
+    font-size: 1.3rem;
+}
+
+.apadrinhe {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.contribua {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.acompanhe {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.apadrinhe img {
+    width: 13rem;
+    height: 11rem;
+}
+
+.contribua img {
+    width: 10rem;
+    height: 11rem;
+}
+
+.acompanhe img {
+    width: 14rem;
+    height: 11rem;
+}
+
+.footer {
+    width: 100%;
+    padding: 4rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.7rem;
+    background-color:#7ad9bd;
+    color: white;
+    font-weight: 600;
+    border-radius: 15px 10px;
+}
+
+.redes-sociais{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: -7rem;
+}
+
+.redes-sociais img {
+    margin: 0 0.5rem;
+}
+
+.sobre-pai {
+    padding: 2rem;
+    background-color: #7cc1f388;
+}
+
+.sobre-pai h1 {
+    text-align: center;
+    font-size: 4rem;
+}
+
+
+.sobre-pai{
+    font-family: sans-serif;
+    font-weight: 520;
+    font-size: 1.3rem;
+}
+
+.missao button:hover{
+    background-color: #131313;
+    padding: 1.1rem;
+    transition-timing-function: ease-in-out;
+}
+.conteudo-sobre {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 0px 120px 120px 60px;
+}
+
+.missao {
+    flex: 2;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.img-apadrinhamento {
+    flex: 2;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 50px;
+
+}
+
+.img-apadrinhamento img {
+    width: 60%;
+}
+
+.btn-admin {
+    width: 4rem;
+    height: 2rem;
+    border: solid 1px black;
+    background-color: rgb(204, 203, 203) ;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 400;
+}
+
+.btn-admin:hover {
+    background-color: rgb(180, 178, 178) ;
+    transition: 0.7s;
+}
+
