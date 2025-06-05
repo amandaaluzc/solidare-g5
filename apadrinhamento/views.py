@@ -110,8 +110,6 @@ def escolha_admin(request):
     return render(request, 'escolha_admin.html')
 
 
-
-
 def login_admin(request):
     if request.method == 'POST':
         nome = request.POST.get('nome')

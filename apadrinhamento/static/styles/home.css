@@ -111,19 +111,24 @@
     text-align: center;
 }
 
-.apadrinhe img {
-    width: 13rem;
-    height: 11rem;
-}
-
-.contribua img {
+.contriua img {
     width: 10rem;
-    height: 11rem;
+    height: auto;
+    margin-bottom: 0.5rem;
+    object-fit: contain;
+}
+.apadrinhe img {
+    width: 10rem;
+    height: auto;
+    margin-bottom: 0.5rem;
+    object-fit: contain;
 }
 
 .acompanhe img {
-    width: 14rem;
-    height: 11rem;
+    width: 10rem;
+    height: auto;
+    margin-bottom: 0.5rem;
+    object-fit: contain;
 }
 
 .footer {
