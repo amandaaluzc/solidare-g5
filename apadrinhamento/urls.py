@@ -22,4 +22,9 @@ urlpatterns = [
     path('deletar-padrinho/<int:padrinho_id>/', views.deletar_padrinho, name='deletar_padrinho'),
     path('editar-padrinho/<int:padrinho_id>/', views.editar_padrinho, name='editar_padrinho'),
     path('api/padrinho/<int:padrinho_id>/', views.api_padrinho, name='api_padrinho'),
+    path('pagamento/<int:id>/', views.pagina_pagamento, name='pagina_pagamento'),
+    path('confirmar-apadrinhamento/<int:id>/', views.confirmar_apadrinhamento, name='confirmar_apadrinhamento'),
+
+
+
 ]
