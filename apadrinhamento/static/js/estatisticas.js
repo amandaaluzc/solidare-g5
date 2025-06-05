@@ -11,14 +11,15 @@
                 labels: labelsData,
                 datasets: [{
                     data: chartData,
-                    backgroundColor: ["red", "blue"]
+                    backgroundColor: ["green", "#87CEFA"]
                 }]
             },
             options: {
                 plugins: {
                     datalabels: {
                         formatter: (value, context) => value  + " crianças",
-                        color: '#fff'
+                        color: 'black',
+                        weight: 'bold'
                     },
 
                     title: {
