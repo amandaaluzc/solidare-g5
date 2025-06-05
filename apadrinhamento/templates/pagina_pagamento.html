@@ -44,9 +44,9 @@
       <h2>Confirmar Pagamento</h2>
       <p>Você realmente deseja efetuar este pagamento?</p>
       <div class="botoes-confirmacao">
-        <form action="{% url 'apadrinhar_crianca' crianca.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn-confirmar">Sim</button>
+        <form id="form-pagamento" action="{% url 'apadrinhar_crianca' crianca.id %}" method="post" onsubmit="return confirmarApadrinhamento()">
+          {% csrf_token %}
+          <button type="submit" class="btn-confirmar">Sim</button>
         </form>
         <button class="btn-nao" onclick="fecharModal()">Não</button>
       </div>
@@ -64,6 +64,11 @@
     function fecharModal() {
       document.getElementById('modal-confirmacao').classList.add('hidden');
     }
+
+      function confirmarApadrinhamento() {
+    alert("Criança apadrinhada com sucesso!");
+    return true;
+  }
   </script>
 </body>
 </html>

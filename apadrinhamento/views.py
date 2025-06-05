@@ -93,6 +93,7 @@ def pagina_exibicao(request):
     return render(request, 'pagina_exibição.html', {'criancas': criancas})
 
 def login_padrinho(request):
+    next_url = request.GET.get('next', 'home')  # pega o 'next' da URL, ou 'home' como padrão
 
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -100,11 +101,14 @@ def login_padrinho(request):
         user = authenticate(request, username=email, password=senha)
         if user is not None:
             login(request, user)
-            return redirect('home')
+            next_url = request.POST.get('next', 'home')  # garante que 'next' do POST também é considerado
+            return redirect(next_url)
         else:
             messages.error(request, 'Email ou senha incorretos.')
 
-    return render(request, 'login_padrinho.html')
+    return render(request, 'login_padrinho.html', {
+        'next': next_url
+    })
 
 def logout_view(request):
     logout(request)
