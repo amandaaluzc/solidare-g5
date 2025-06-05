@@ -7,7 +7,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>homepage</title>
         <link rel="stylesheet" href="{% static 'styles/home.css' %}">
-    </head>
     <body>
         {% include "partials/header.html" %}
     <main>
@@ -47,6 +46,28 @@
             </section>
         </section>
 
+        <section class="container-estatisticas">
+            <section class="estatisticas">
+                <canvas id="myChart"></canvas>
+            </section>
+
+            {{ labels|json_script:"chart-labels" }}
+            {{ data|json_script:"chart-data" }}
+
+
+            <section class="descricao-stats">
+                <p>O Instituto Solidare está sempre crescendo para auxiliar cada vez mais
+                    o desenvolvimento sociocultural de crianças vulneráveis.</p><br>
+                   <p> Através de uma quantia simbólica, você pode mudar a vida de nossas crianças.<br><br>
+                    O que está esperando?<br>
+                    Crie um laço e transforme vidas!
+                   </p>
+
+                                 
+                <a href="{% url 'pagina_exibicao' %}"><button>Apadrinhar</button></a>
+            </section>
+        </section>
+        
         <section id="sobre">
         <section class="sobre-pai">
             <h1>Sobre o Projeto</h1>
@@ -84,6 +105,11 @@
                 <img src="{% static "img\instagram.png" %}">
             </section>
         </section>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+        <script src="{% static 'js/estatisticas.js' %}"></script>
     </main>
 
 </body>
