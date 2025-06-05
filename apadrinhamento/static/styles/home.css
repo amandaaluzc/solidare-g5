@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
-.boas-vindas button, .missao button{
+.boas-vindas button, .missao button, .descricao-stats button{
     font-family: sans-serif;
     font-size: 1rem;
     font-weight: 700;
@@ -14,7 +14,7 @@
 
 }
 
-.apadrinhe button, .missao button{
+.apadrinhe button, .missao button, .descricao-stats button{
     padding: 1rem;
     background-color: #009640;
     color: #ffffff;
@@ -125,6 +125,47 @@
     width: 14rem;
     height: 11rem;
 }
+
+
+
+.container-estatisticas {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5rem 0;
+    background-color: aliceblue;
+}
+
+.estatisticas {
+    position: relative;
+    height: 25rem;
+    width: 25rem;  
+
+}
+
+.estatisticas canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.descricao-stats p {
+    font-size: 1.1rem;
+    line-height: 0.5;
+}
+
+.descricao-stats button {
+    margin-top: 3rem;
+    align-items: center;
+}
+
+.descricao-stats button:hover{
+    background-color: #131313;
+    padding: 1.1rem;
+    transition-timing-function: ease-in-out;
+}
+
 
 .footer {
     width: 100%;
