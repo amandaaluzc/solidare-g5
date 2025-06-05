@@ -1,18 +1,26 @@
-beforeEach(() => {
+beforeEach(()=> {
   cy.request('POST', '/teste/limpar-geral/');
 });
 
-describe('História 01: Apadrinhar uma criança', () => {
-  it('Cenário: Usuário apadrinha uma criança (login ou cadastro)', () => {
-
+describe('História 01: Apadrinhar uma criança aleatoriamente', () => {
+  it('Cenário: Usuário apadrinha uma criança clicando no botão "Escolha por mim"', () => {
+    
     cy.visit('/');
     cy.contains('button', 'Torne-se padrinho').click();
+
+   
     cy.url().should('include', '/pagina-exibicao');
 
-    cy.get('.card').first().click();
-    cy.get('.modal:visible').should('be.visible')
-      .find('.btn-apadrinhar').click();
+    
+    cy.get('#btn-aleatorio').click();
 
+    
+    cy.get('.modal:visible').should('be.visible');
+
+   
+    cy.get('.modal:visible').find('.btn-apadrinhar').click();
+
+    
     cy.url().should('include', '/login');
 
     cy.contains('a', 'Cadastre-se aqui').click();
@@ -28,8 +36,10 @@ describe('História 01: Apadrinhar uma criança', () => {
     cy.get('form').submit();
 
     cy.url().should('include', '/');
-
     cy.contains('button', 'Torne-se padrinho').click();
+
+     cy.get('#btn-aleatorio').click();
+
     cy.url().should('include', '/pagina-exibicao');
 
     cy.get('.card').first().click();
@@ -49,7 +59,6 @@ describe('História 01: Apadrinhar uma criança', () => {
       }
     });
 
-   
     cy.get('button.btn-confirmar:visible').first().click();
 
 
@@ -64,5 +73,6 @@ describe('História 01: Apadrinhar uma criança', () => {
 
    
     cy.url().should('include', '/pagina-exibicao');
+
   });
 });
