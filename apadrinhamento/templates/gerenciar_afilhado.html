@@ -65,9 +65,9 @@
                                         {% endif %}
                                         
                                         <td>
-                                            <button type="button" class="edit-button" onclick="openModal('{{ ap.crianca.id }}','{{ ap.crianca.nome|escapejs }}','{{ ap.crianca.idade }}','{{ ap.crianca.genero }}','{{ ap.crianca.descricao|escapejs }}','{% if ap.crianca.foto %}{{ ap.crianca.foto.url }}{% else %}{% endif %}')"><img src="{% static 'img/Lapis.png' %}" alt="Editar"></button>
+                                            <button type="button" class="edit-button" onclick="openModal('{{ ap.crianca.id }}','{{ ap.crianca.nome|escapejs }}','{{ ap.crianca.idade }}','{{ ap.crianca.genero }}','{{ ap.crianca.descricao|escapejs }}','{% if ap.crianca.foto %}{{ ap.crianca.foto.url }}{% else %}{% endif %}')"><img src="{% static 'img/edit.png' %}" alt="Editar"></button>
                                             <button type="button" onclick="openDeleteConfirmModal('{{ ap.crianca.id }}')">
-                                                <img src="{% static 'img/Lixo.png' %}" alt="Deletar">
+                                                <img src="{% static 'img/delete.png' %}" alt="Deletar">
                                             </button>
                                         </td>
                                     </tr>
