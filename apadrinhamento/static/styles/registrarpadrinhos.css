@@ -66,6 +66,7 @@ main {
     min-height: calc(100vh - 70px);
     padding: 40px 20px;
     background-color: white;
+   
 }
 
 .container {
@@ -74,7 +75,8 @@ main {
 }
 
 .form-box {
-    width: 100%;
+    width: 100%;  
+    font-family: sans-serif;
 }
 
 .input-group {
@@ -104,11 +106,12 @@ main {
 button[type="submit"] {
     width: 100%;
     padding: 12px;
-    background-color: #333;
+    background-color: #009640;
     color: white;
     border: none;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
     margin-top: 16px;
 }
