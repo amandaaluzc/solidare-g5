@@ -1,0 +1,68 @@
+before(() => {
+  cy.request('POST', '/teste/limpar-geral/');
+});
+
+describe('História 01: Apadrinhar uma criança', () => {
+  it('Cenário: Usuário apadrinha uma criança (login ou cadastro)', () => {
+
+    cy.visit('/');
+    cy.contains('button', 'Torne-se padrinho').click();
+    cy.url().should('include', '/pagina-exibicao');
+
+    cy.get('.card').first().click();
+    cy.get('.modal:visible').should('be.visible')
+      .find('.btn-apadrinhar').click();
+
+    cy.url().should('include', '/login');
+
+    cy.contains('a', 'Cadastre-se aqui').click();
+    cy.url().should('include', '/registrar');
+
+    cy.get('input[name="first_name"]').type('João');
+    cy.get('input[name="last_name"]').type('Silva');
+    cy.get('input[name="email"]').type('teste@novoemail.com');
+    cy.get('input[name="password1"]').type('senhaSegura123!');
+    cy.get('input[name="password2"]').type('senhaSegura123!');
+    cy.get('input[name="telefone"]').type('11999999999');
+    cy.get('input[name="cpf"]').type('12345678900');
+    cy.get('form').submit();
+
+    cy.url().should('include', '/');
+
+    cy.contains('button', 'Torne-se padrinho').click();
+    cy.url().should('include', '/pagina-exibicao');
+
+    cy.get('.card').first().click();
+    cy.get('.modal:visible').should('be.visible')
+      .find('.btn-apadrinhar').click();
+
+    cy.url().then(url => {
+      if (url.includes('/login')) {
+       
+        cy.get('input[name="email"]').type('teste@novoemail.com');
+        cy.get('input[name="password"]').type('senhaSegura123!');
+        cy.get('form').submit();
+
+        cy.url().should('include', '/pagamento/');
+      } else {
+        expect(url).to.include('/pagamento/');
+      }
+    });
+
+   
+    cy.get('button.btn-confirmar:visible').first().click();
+
+
+    
+    cy.get('#modal-confirmacao').should('not.have.class', 'hidden');
+    cy.get('#modal-confirmacao form').submit();
+
+    
+    cy.on('window:alert', (text) => {
+      expect(text).to.contains('Criança apadrinhada com sucesso');
+    });
+
+   
+    cy.url().should('include', '/pagina-exibicao');
+  });
+});

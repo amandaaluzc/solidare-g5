@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from django.contrib.auth.decorators import login_required
 
+
 urlpatterns = [
     path("criança/<int:crianca_id>/", views.detalhes_crianca, name="detalhes_crianca"),
     path('login/', views.login_padrinho, name='login_padrinho'),
@@ -25,6 +26,6 @@ urlpatterns = [
     path('pagamento/<int:id>/', views.pagina_pagamento, name='pagina_pagamento'),
     path('confirmar-apadrinhamento/<int:id>/', views.confirmar_apadrinhamento, name='confirmar_apadrinhamento'),
 
-
+     path('teste/limpar-geral/', views.limpar_dados_geral, name='limpar_dados_geral'),
 
 ]
