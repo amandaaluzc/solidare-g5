@@ -135,7 +135,6 @@
     justify-content: space-around;
     align-items: center;
     padding: 5rem 0;
-    background-color: aliceblue;
 }
 
 .estatisticas {
@@ -150,9 +149,23 @@
     height: 100% !important;
 }
 
+.descricao-stats {
+    width: 40vw;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+}
+
 .descricao-stats p {
     font-size: 1.1rem;
-    line-height: 0.5;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.descricao-stats a {
+    margin-left: -1rem;
 }
 
 .descricao-stats button {
