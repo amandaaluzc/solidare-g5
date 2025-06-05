@@ -39,7 +39,7 @@
 }
 
 thead {
-    background-color: #e6e6e6;
+    background-color: #7DB0D1;
     font-weight: bold;
 }
 
@@ -147,7 +147,6 @@ tbody img {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: -45;  
     border: 2px dashed #e0e0e0;
 }
 
@@ -222,4 +221,27 @@ tbody img {
 
 .btn-confirm-no:hover {
     background-color: #ac2525 !important;
+}
+
+.btn-cadastrar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-cadastrar:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
+}
+
+.form-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
 }
