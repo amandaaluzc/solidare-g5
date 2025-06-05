@@ -276,3 +276,17 @@ def api_padrinho(request, padrinho_id):
         return JsonResponse(data)
     except Padrinho.DoesNotExist:
         return JsonResponse({'error': 'Padrinho não encontrado'}, status=404)
+
+@login_required
+def pagina_pagamento(request, id):
+    crianca = get_object_or_404(Crianca, id=id)
+    return render(request, 'pagina_pagamento.html', {'crianca': crianca})
+
+@login_required
+def confirmar_apadrinhamento(request, id):
+    if request.method == 'POST':
+        crianca = get_object_or_404(Crianca, id=id)
+
+        Apadrinhamento.objects.create(crianca=crianca)
+
+        return redirect('pagina_exibição')
