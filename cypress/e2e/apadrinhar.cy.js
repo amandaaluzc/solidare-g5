@@ -3,7 +3,7 @@ beforeEach(() => {
 });
 
 describe('História 01: Apadrinhar uma criança', () => {
-  it('Cenário: Usuário apadrinha uma criança (login ou cadastro)', () => {
+  it('Cenário 1: Usuário apadrinha uma criança', () => {
 
     cy.visit('/');
     cy.contains('button', 'Torne-se padrinho').click();

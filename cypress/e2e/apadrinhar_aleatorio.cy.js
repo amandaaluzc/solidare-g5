@@ -2,7 +2,7 @@ beforeEach(()=> {
   cy.request('POST', '/teste/limpar-geral/');
 });
 
-describe('História 01: Apadrinhar uma criança aleatoriamente', () => {
+describe('História 02: Apadrinhar uma criança aleatoriamente', () => {
   it('Cenário: Usuário apadrinha uma criança clicando no botão "Escolha por mim"', () => {
     
     cy.visit('/');
