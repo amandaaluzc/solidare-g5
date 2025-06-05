@@ -10,9 +10,6 @@
     <p><strong>Idade:</strong> {{ crianca.idade }}</p>
     <p><strong>Descrição:</strong> {{ crianca.descricao }}</p>
 
-    {# --------------------------------------------------------- #}
-    {# ­--- Bloco de ação de apadrinhamento                     #}
-    {# --------------------------------------------------------- #}
     {% if apadrinhada %}
         <p><em>Esta criança já foi apadrinhada.</em></p>
     {% else %}
@@ -22,7 +19,6 @@
                 <button>Quero apadrinhar</button>
             </a>
         {% else %}
-            {# Visitante ou admin: pede login de padrinho #}
             <a href="{% url 'login_padrinho' %}?next={{ request.path }}">
                 <button>Quero apadrinhar</button>
             </a>
