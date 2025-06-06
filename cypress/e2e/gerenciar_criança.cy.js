@@ -1,4 +1,25 @@
+Cypress.Commands.add('deletar_superuser', () => {
+  cy.exec('python delete_superuser.py', { failOnNonZeroExit: false }).then((result) => {
+    console.log(result.stdout);
+    if (result.stderr) {
+      console.error(result.stderr);
+    }
+  });
+});
+
+Cypress.Commands.add('add_superuser', () => {
+  cy.exec('python create_superuser.py', { failOnNonZeroExit: false }).then((result) => {
+    console.log(result.stdout);
+    if (result.stderr) {
+      console.error(result.stderr);
+    }
+  });
+});
 describe('História 08: Como administrador, eu gostaria de gerenciar as crianças', () => {
+  before(() => {
+    cy.deletar_superuser();
+    cy.add_superuser();
+  });
 
  beforeEach(() => {
     
@@ -8,8 +29,8 @@ describe('História 08: Como administrador, eu gostaria de gerenciar as criança
   beforeEach(() => {
    
     cy.visit('/login_admin');
-    cy.get('input[name="nome"]').type('Solidareadmin');
-    cy.get('input[name="password"]').type('ADM12345');
+    cy.get('input[name="nome"]').type('adminsolidare');
+    cy.get('input[name="password"]').type('admin123');
     cy.get('form').submit();
 
     

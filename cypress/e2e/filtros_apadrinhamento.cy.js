@@ -1,4 +1,25 @@
+Cypress.Commands.add('deletar_superuser', () => {
+  cy.exec('python delete_superuser.py', { failOnNonZeroExit: false }).then((result) => {
+    console.log(result.stdout);
+    if (result.stderr) {
+      console.error(result.stderr);
+    }
+  });
+});
+
+Cypress.Commands.add('add_superuser', () => {
+  cy.exec('python create_superuser.py', { failOnNonZeroExit: false }).then((result) => {
+    console.log(result.stdout);
+    if (result.stderr) {
+      console.error(result.stderr);
+    }
+  });
+});
 describe('História 04: Apadrinhamento com Filtro', () => {
+  before(() => {
+    cy.deletar_superuser();
+    cy.add_superuser();
+  });
   const dadosPadrinho = {
     primeiroNome: 'Padrinho',
     sobrenome: 'Filtrado',
@@ -15,8 +36,8 @@ describe('História 04: Apadrinhamento com Filtro', () => {
 
     // Login como admin para cadastrar as 3 crianças
     cy.visit('/login_admin');
-    cy.get('input[name="nome"]').type('Solidareadmin');
-    cy.get('input[name="password"]').type('ADM12345');
+    cy.get('input[name="nome"]').type('adminsolidare');
+    cy.get('input[name="password"]').type('admin123');
     cy.get('form').submit();
     cy.url().should('not.include', '/login_admin');
 
