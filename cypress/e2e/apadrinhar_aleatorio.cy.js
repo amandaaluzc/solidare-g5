@@ -1,11 +1,28 @@
+Cypress.Commands.add('deletar_superuser', () => {
+  cy.exec('python delete_superuser.py', { failOnNonZeroExit: false }).then((result) => {
+    console.log(result.stdout);
+    if (result.stderr) {
+      console.error(result.stderr);
+    }
+  });
+});
+
+Cypress.Commands.add('add_superuser', () => {
+  cy.exec('python create_superuser.py', { failOnNonZeroExit: false }).then((result) => {
+    console.log(result.stdout);
+    if (result.stderr) {
+      console.error(result.stderr);
+    }
+  });
+});
 beforeEach(() => {
   // Limpa o sistema
   cy.request('POST', '/teste/limpar-geral/');
 
   // Cadastra uma criança antes de cada teste
   cy.visit('/login_admin');
-  cy.get('input[name="nome"]').type('Solidareadmin');
-  cy.get('input[name="password"]').type('ADM12345');
+  cy.get('input[name="nome"]').type('adminsolidare');
+  cy.get('input[name="password"]').type('admin123');
   cy.get('form').submit();
   cy.url().should('not.include', '/login_admin');
 
@@ -22,6 +39,10 @@ beforeEach(() => {
 });
 
 describe('História 02: Apadrinhar uma criança aleatoriamente', () => {
+  before(() => {
+    cy.deletar_superuser();
+    cy.add_superuser();
+  });
   it('Cenário: Usuário apadrinha uma criança clicando no botão "Escolha por mim"', () => {
     cy.visit('/');
     cy.contains('button', 'Torne-se padrinho').click();

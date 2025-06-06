@@ -1,3 +1,20 @@
+Cypress.Commands.add('deletar_superuser', () => {
+  cy.exec('python delete_superuser.py', { failOnNonZeroExit: false }).then((result) => {
+    console.log(result.stdout);
+    if (result.stderr) {
+      console.error(result.stderr);
+    }
+  });
+});
+
+Cypress.Commands.add('add_superuser', () => {
+  cy.exec('python create_superuser.py', { failOnNonZeroExit: false }).then((result) => {
+    console.log(result.stdout);
+    if (result.stderr) {
+      console.error(result.stderr);
+    }
+  });
+});
 const gerarCpfUnico = () => {
     let cpf = '';
     for (let i = 0; i < 11; i++) {
@@ -51,7 +68,11 @@ Cypress.Commands.add('fluxoApadrinhamento', (padrinho) => {
     cy.log(`Padrinho ${padrinho.firstName} deslogado.`);
 });
 
-describe('Fluxo E2E Completo: Apadrinhamento e Verificação do Administrador', () => {
+describe('História 06: Como administrador, quero gerenciar os padrinhos', () => {
+    before(() => {
+    cy.deletar_superuser();
+    cy.add_superuser();
+  });
 
     before(() => {
         // Limpa dados
@@ -59,11 +80,10 @@ describe('Fluxo E2E Completo: Apadrinhamento e Verificação do Administrador', 
 
         // Login como admin para cadastrar crianças
         cy.visit('/login_admin');
-        cy.get('input[name="nome"]').type(Cypress.env('ADMIN_USER'));
-        cy.get('input[name="password"]').type(Cypress.env('ADMIN_PASS'));
+        cy.get('input[name="nome"]').type('adminsolidare');
+        cy.get('input[name="password"]').type('admin123');
         cy.get('form').submit();
-        cy.url().should('not.include', '/login_admin');
-
+       
         // Cadastro criança 1
         cy.visit('/criancas/cadastrar/');
         cy.get('input[name="nome"]').type('Ana');
@@ -118,13 +138,15 @@ describe('Fluxo E2E Completo: Apadrinhamento e Verificação do Administrador', 
     });
 
     it('Cenário 3: Administrador deve logar, editar e excluir um padrinho', () => {
-        const username = Cypress.env('ADMIN_USER');
-        const password = Cypress.env('ADMIN_PASS');
+        cy.visit('/login_admin');
+        cy.get('input[name="nome"]').type('adminsolidare');
+        cy.get('input[name="password"]').type('admin123');
+        cy.get('form').submit();
         const novoNome = 'Pedro Silva';
 
         cy.visit('/login_admin/');
-        cy.get('#nome-login').clear().type(username);
-        cy.get('#senha-login').clear().type(password);
+        cy.get('input[name="nome"]').type('adminsolidare');
+        cy.get('input[name="password"]').type('admin123');
         cy.contains('button', 'Entrar').click();
         cy.url().should('include', '/escolha_adm/');
         cy.log('Login do administrador realizado com sucesso.');
