@@ -24,19 +24,20 @@ from .forms import CriancaForm
 @csrf_exempt
 @require_POST
 def limpar_dados_geral(request):
-
     if not settings.DEBUG:
         return JsonResponse({'error': 'Acesso negado'}, status=403)
-   
-    usuarios_de_teste = User.objects.filter(email__icontains='@novoemail.com')
+
     
-    Padrinho.objects.filter(user__in=usuarios_de_teste).delete()
-   
     Apadrinhamento.objects.all().delete()
+    Crianca.objects.all().delete()
+
     
+    usuarios_de_teste = User.objects.filter(email__icontains='@email.com', is_staff=False)
+    Padrinho.objects.filter(user__in=usuarios_de_teste).delete()
     usuarios_de_teste.delete()
-    
+
     return JsonResponse({'status': 'dados limpos com sucesso'})
+
 
 
 def registrar_padrinho(request):
