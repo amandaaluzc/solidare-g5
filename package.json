@@ -1,0 +1,23 @@
+{
+  "name": "solidare-g5",
+  "version": "1.0.0",
+  "description": "Esta aplicação web foi desenvolvida para a cadeira **Projetos 2** da **CESAR School**, em que temos como cliente o **Instituto Solidare**, uma organização sem fins lucrativos, que tem como missão promover o desenvolvimento social, político e pedagógico de crianças e adolescentes em situação de vulnerabilidade social e financeira.​",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amandaaluzc/solidare-g5.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amandaaluzc/solidare-g5/issues"
+  },
+  "homepage": "https://github.com/amandaaluzc/solidare-g5#readme",
+  "devDependencies": {
+    "cypress": "^14.4.1"
+  }
+}
