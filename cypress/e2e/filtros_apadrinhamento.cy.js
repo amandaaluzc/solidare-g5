@@ -1,4 +1,4 @@
-describe('História 04: Apadrinhamento com Filtros (Cadastro e Re-login UI)', () => {
+describe('História 04: Apadrinhamento com Filtro', () => {
 
  
   const dadosPadrinho = {
