@@ -175,7 +175,7 @@ Nosso projeto **Laço Solidare** visa automatizar os processos do sistema de apa
 
 ### ✏️ Sketches
 <details>
-<summary>ver</summary>
+<summary>abrir</summary>
 
 ![Sketche1](media/entrega02/Sketches1.png)
 
@@ -202,7 +202,7 @@ Nosso projeto **Laço Solidare** visa automatizar os processos do sistema de apa
 
 ### 📋 Diagrama de Atividades
 <details>
-<summary>ver</summary>
+<summary>abrir</summary>
 
 ![Diagrama de Atividades parte 1](media/entrega02/diagrama1.jpg)
 
@@ -213,7 +213,7 @@ Nosso projeto **Laço Solidare** visa automatizar os processos do sistema de apa
 
 ### 📌 Backlog e Sprint
 <details>
-<summary>ver</summary>
+<summary>abrir</summary>
 
 #### Backlog:
 ![Backlog2](media/entrega02/Backlog02.png)
@@ -228,7 +228,7 @@ Nosso projeto **Laço Solidare** visa automatizar os processos do sistema de apa
 
 ### 🐛 Issue/Bug Tracker
 <details>
-<summary>ver</summary>
+<summary>abrir</summary>
 
 * Issue #32
   ![Issue #32](media/entrega02/issue32.png)
