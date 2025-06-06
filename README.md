@@ -158,8 +158,9 @@ Nosso projeto **Laço Solidare** visa automatizar os processos do sistema de apa
 #### - História 06: Como administrador, eu gostaria de gerenciar os padrinhos
 #### - História 07: Como administrador, eu gostaria de cadastrar crianças
 #### - História 08: Como administrador, eu gostaria de gerenciar as crianças
+**Extra**: Como usuário, eu gostaria de vizualizar a relação entre quantidade de crianças no Instituto e crianças apadrinhadas
 
-🔗 [Histórias de Usuário e Cenários Atualizados](https://docs.google.com/document/d/1u4eRhVVwZgFhZe1qXeQgEIQJguWyihG8sPGUJnuedxc/edit?usp=sharing)
+[Histórias de Usuário e Cenários Atualizados](https://docs.google.com/document/d/1u4eRhVVwZgFhZe1qXeQgEIQJguWyihG8sPGUJnuedxc/edit?usp=sharing)
 
 
 ---
@@ -192,7 +193,7 @@ Nosso projeto **Laço Solidare** visa automatizar os processos do sistema de apa
 [Screencast Protótipo do Figma](https://youtu.be/0f_ylr2bOQQ?si=Wt3nzddBOEEwSKuo)
  
 
-[Screencast Aplicação]()
+[Screencast Aplicação](https://youtu.be/L_9zj7U7NTk?si=Zm9d-r7_hTyouoJJ)
 
 [Screencast Testes Automatizados](https://youtu.be/samk1jqzFog)
 
