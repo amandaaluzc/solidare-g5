@@ -148,7 +148,9 @@
     justify-content: space-around;
     align-items: center;
     padding: 5rem 0;
+    font-family: 'Quicksand', sans-serif;
 }
+
 
 .estatisticas {
     position: relative;
@@ -169,6 +171,10 @@
     justify-content: center;
     align-items: left;
     flex-direction: column;
+}
+
+.descricao-stats h1 {
+    font-size: 2.8rem;
 }
 
 .descricao-stats p {
