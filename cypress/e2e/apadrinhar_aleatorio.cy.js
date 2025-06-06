@@ -36,7 +36,7 @@ describe('História 02: Apadrinhar uma criança aleatoriamente', () => {
 
     cy.url().should('include', '/pagina-exibicao');
 
-    // Aqui está o clique forçado
+   
     cy.get('.card').first().click({ force: true });
 
     cy.get('.modal:visible').should('be.visible')
