@@ -61,11 +61,13 @@ body {
 }
 
 .logo img{
-    width: 15%;
+    width: 180px;  
+    height: auto; 
 }
 
 .logo{
     margin-left: 30px;
+    margin-top: 15px;
 
 }
 

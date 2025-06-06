@@ -7,6 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>homepage</title>
         <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    </head>
     <body>
         {% include "partials/header.html" %}
     <main>
@@ -56,15 +60,16 @@
 
 
             <section class="descricao-stats">
+                <h1>Seja a parte que falta</h1>
                 <p>O Instituto Solidare está sempre crescendo para auxiliar cada vez mais
-                    o desenvolvimento sociocultural de crianças vulneráveis.</p><br>
+                    o <b>desenvolvimento sociocultural</b> de crianças vulneráveis.</p>
                    <p> Através de uma quantia simbólica, você pode mudar a vida de nossas crianças.<br><br>
                     O que está esperando?<br>
-                    Crie um laço e transforme vidas!
+                    <b>Crie um laço e transforme vidas!</b>
                    </p>
 
                                  
-                <a href="{% url 'pagina_exibicao' %}"><button>Apadrinhar</button></a>
+                <a href="{% url 'pagina_exibicao' %}"><button>Torne-se padrinho</button></a>
             </section>
         </section>
         
@@ -88,7 +93,7 @@
                 </section>
         
                 <section class="img-apadrinhamento">
-                    <img src="{% static 'img/logo-solidare-final.png' %}" class="img-crianca">   
+                    <img src="{% static 'img/icone-solidare.png' %}" class="img-crianca">   
                 </section>
             </section>
         </section>

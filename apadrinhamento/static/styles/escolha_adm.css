@@ -5,6 +5,7 @@ html {
   }
 
 body {
+    font-family: sans-serif;
     margin : 0;
     padding: 0;
     background-color: #f9fafb;
@@ -61,11 +62,13 @@ body {
 }
 
 .logo img{
-    width: 15%;
+    width: 180px;  
+    height: auto; 
 }
 
 .logo{
     margin-left: 30px;
+    margin-top: 15px;
 
 }
 
@@ -81,7 +84,7 @@ body {
 
 .box-content {
     width: 100%;
-    height: 85vh;
+    height: 70vh;
 }
 
 .content {
@@ -94,7 +97,8 @@ body {
 }
 
 .content h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
+
 }
 
 .escolhas {
@@ -107,7 +111,7 @@ body {
 }
 
 .escolhas h2 {
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .padrinhos {

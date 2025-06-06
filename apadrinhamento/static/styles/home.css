@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
 .boas-vindas button, .missao button, .descricao-stats button{
     font-family: sans-serif;
@@ -39,7 +38,7 @@
 .laco-solidare{
     flex: 1;
     text-align: center;
-    font-family: sans-serif;
+    font-family: 'Quicksand', sans-serif;
     font-weight: 500;
     padding: 0 20px;
 }
@@ -58,15 +57,18 @@
 
 
 .texto-info {
-    margin: 4rem 0;
-    font-size: 3.3rem;
-    font-weight: 800;
+    font-family: 'Quicksand', sans-serif;
+    margin: 4rem;
+    margin-bottom: 6rem;
+    font-size: 3.8rem;
+    font-weight: 600;
     align-items: center;
     color:  #26717e;
     text-align: center;
 }
 
 .container-infos {
+    font-family: 'Quicksand', sans-serif;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -74,6 +76,12 @@
     margin-bottom: 5rem;
     margin: 1 4rem;
     text-align: center;
+    font-weight: 520;
+    font-size: 1.3rem;
+}
+
+.container-estatisticas{
+    font-family: 'Quicksand', sans-serif;
 }
 
 .container-infos h3{
@@ -140,12 +148,14 @@
     justify-content: space-around;
     align-items: center;
     padding: 5rem 0;
+    font-family: 'Quicksand', sans-serif;
 }
+
 
 .estatisticas {
     position: relative;
-    height: 25rem;
-    width: 25rem;  
+    height: 30rem;
+    width: 30rem;  
 
 }
 
@@ -163,10 +173,15 @@
     flex-direction: column;
 }
 
+.descricao-stats h1 {
+    font-size: 2.8rem;
+}
+
 .descricao-stats p {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     line-height: 1.5;
     text-align: left;
+    
 }
 
 .descricao-stats a {
@@ -186,13 +201,14 @@
 
 
 .footer {
+    font-family: 'Quicksand', sans-serif;
     width: 100%;
     padding: 4rem 0;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    font-size: 1.7rem;
+    font-size: 1.2rem;
     background-color:#7ad9bd;
     color: white;
     font-weight: 600;
@@ -222,7 +238,7 @@
 
 
 .sobre-pai{
-    font-family: sans-serif;
+    font-family: 'Quicksand', sans-serif;
     font-weight: 520;
     font-size: 1.3rem;
 }
