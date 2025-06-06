@@ -5,6 +5,7 @@ html {
   }
 
 body {
+    font-family: sans-serif;
     margin : 0;
     padding: 0;
     background-color: #f9fafb;
@@ -61,11 +62,13 @@ body {
 }
 
 .logo img{
-    width: 15%;
+    width: 180px;  
+    height: auto; 
 }
 
 .logo{
     margin-left: 30px;
+    margin-top: 15px;
 
 }
 
@@ -81,7 +84,7 @@ body {
 
 .box-content {
     width: 100%;
-    height: 85vh;
+    height: 70vh;
 }
 
 .content {
@@ -94,7 +97,8 @@ body {
 }
 
 .content h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
+
 }
 
 .escolhas {
@@ -107,7 +111,7 @@ body {
 }
 
 .escolhas h2 {
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .padrinhos {
@@ -120,13 +124,6 @@ body {
     border: solid 1.2px rgb(192, 188, 188);
     border-radius: 10px;
     cursor: pointer;
-}
-
-
-.padrinhos img {
-    width: 7rem;
-    height: 7rem;
-    margin-bottom: 0.5rem;
 }
 
 .padrinhos:hover {
@@ -147,18 +144,23 @@ body {
     cursor: pointer;
 }
 
-.afilhados img {
-    width: 7rem;
-    height: 7rem;
-    margin-bottom: 0.5rem;
-}
-
 
 .afilhados:hover {
     background-color: #f1f2f3;
     transition: 0.5s;
 }
 
+.padrinhos img {
+    width: 5rem;
+    height: auto;
+    margin-bottom: 0.5rem;
+    object-fit: contain;
+}
 
-
+.afilhados img {
+    width: 8rem;
+    height: auto;
+    margin-bottom: 0.5rem;
+    object-fit: contain;
+}
 

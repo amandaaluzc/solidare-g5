@@ -8,12 +8,36 @@ from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
+from django.views.decorators.http import require_POST
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+from .models import Padrinho 
+from django.conf import settings
 
 
 from django.contrib.auth import authenticate, login
 
 from .forms import PadrinhoRegistrationForm
 from .forms import CriancaForm
+
+@csrf_exempt
+@require_POST
+def limpar_dados_geral(request):
+
+    if not settings.DEBUG:
+        return JsonResponse({'error': 'Acesso negado'}, status=403)
+   
+    usuarios_de_teste = User.objects.filter(email__icontains='@novoemail.com')
+    
+    Padrinho.objects.filter(user__in=usuarios_de_teste).delete()
+   
+    Apadrinhamento.objects.all().delete()
+    
+    usuarios_de_teste.delete()
+    
+    return JsonResponse({'status': 'dados limpos com sucesso'})
+
 
 def registrar_padrinho(request):
     if request.method == "POST":
@@ -54,7 +78,23 @@ def lista_criancas(request):
     return render(request, 'lista_criancas.html', {'criancas': criancas})
 
 def homepage (request):
-    return render (request , 'home.html')
+    total_afilhados = Crianca.objects.count()
+    
+    afilhados_apadrinhados = Apadrinhamento.objects.values('crianca').distinct().count()
+    afilhados_disponiveis = total_afilhados - afilhados_apadrinhados
+    
+    
+    labels = ['Crianças apadrinhadas', 'Total de crianças']
+    data = [afilhados_apadrinhados, total_afilhados]
+    
+    
+    conteudo = {
+        'labels': labels,
+        'data': data,
+    }
+    
+    
+    return render (request , 'home.html', conteudo)
 
 def detalhes_crianca(request, crianca_id):
     crianca = get_object_or_404(Crianca, id=crianca_id)
@@ -72,6 +112,7 @@ def pagina_exibicao(request):
     return render(request, 'pagina_exibição.html', {'criancas': criancas})
 
 def login_padrinho(request):
+    next_url = request.GET.get('next', 'home')  # pega o 'next' da URL, ou 'home' como padrão
 
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -79,11 +120,14 @@ def login_padrinho(request):
         user = authenticate(request, username=email, password=senha)
         if user is not None:
             login(request, user)
-            return redirect('home')
+            next_url = request.POST.get('next', 'home')  # garante que 'next' do POST também é considerado
+            return redirect(next_url)
         else:
             messages.error(request, 'Email ou senha incorretos.')
 
-    return render(request, 'login_padrinho.html')
+    return render(request, 'login_padrinho.html', {
+        'next': next_url
+    })
 
 def logout_view(request):
     logout(request)
@@ -103,8 +147,6 @@ def escolha_admin(request):
         return HttpResponseForbidden("Acesso restrito a administradores.")
     
     return render(request, 'escolha_admin.html')
-
-
 
 
 def login_admin(request):
@@ -223,3 +265,65 @@ def editar_crianca(request, crianca_id):
             return redirect('gerenciar_afilhados')
     else:
         return redirect('gerenciar_afilhados')
+
+@require_POST
+@login_required
+def deletar_padrinho(request, padrinho_id):
+    if not request.user.is_staff:
+        return HttpResponseForbidden("Acesso restrito.")
+
+    padrinho = get_object_or_404(Padrinho, id=padrinho_id)
+    user = padrinho.user
+
+    padrinho.delete()
+    user.delete()
+    return JsonResponse({'success': True})
+
+@csrf_exempt
+@require_POST
+def editar_padrinho(request, padrinho_id):
+    try:
+        padrinho = Padrinho.objects.get(id=padrinho_id)
+        
+        padrinho.user.first_name = request.POST.get('nome', '').split(' ')[0]
+        if ' ' in request.POST.get('nome', ''):
+            padrinho.user.last_name = request.POST.get('nome', '').split(' ')[1]
+        padrinho.user.email = request.POST.get('email', '')
+        padrinho.telefone = request.POST.get('telefone', '')
+        
+        padrinho.user.save()
+        padrinho.save()
+        
+        return JsonResponse({'success': True})
+    except Padrinho.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Padrinho não encontrado'}, status=404)
+    
+
+def api_padrinho(request, padrinho_id):
+    try:
+        padrinho = Padrinho.objects.get(id=padrinho_id)
+        data = {
+            'user': {
+                'first_name': padrinho.user.first_name,
+                'last_name': padrinho.user.last_name,
+                'email': padrinho.user.email,
+            },
+            'telefone': padrinho.telefone
+        }
+        return JsonResponse(data)
+    except Padrinho.DoesNotExist:
+        return JsonResponse({'error': 'Padrinho não encontrado'}, status=404)
+
+@login_required
+def pagina_pagamento(request, id):
+    crianca = get_object_or_404(Crianca, id=id)
+    return render(request, 'pagina_pagamento.html', {'crianca': crianca})
+
+@login_required
+def confirmar_apadrinhamento(request, id):
+    if request.method == 'POST':
+        crianca = get_object_or_404(Crianca, id=id)
+
+        Apadrinhamento.objects.create(crianca=crianca)
+
+        return redirect('pagina_exibição')

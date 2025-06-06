@@ -169,3 +169,22 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 .vscode
+
+# Node.js
+node_modules/
+
+# Logs do npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ambiente local
+.env
+
+# Cypress
+cypress/screenshots/
+cypress/videos/
+.cypress-cache/
+
+# VSCode settings
+.vscode/

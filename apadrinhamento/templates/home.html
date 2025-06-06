@@ -7,6 +7,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>homepage</title>
         <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     </head>
     <body>
         {% include "partials/header.html" %}
@@ -28,25 +31,47 @@
             <p class="texto-info">Como Funciona</p>
             <section class="container-infos">
                 <section class="apadrinhe">
-                    <img src="{% static "img\apadrinhe.png" %}">
+                    <img src="{% static "img\Afilhado2.png" %}">
                     <h3>Apadrinhe</h3>
                     <p>Escolha uma crianca <br/> para apoiar</p>
                 </section>
 
                 <section class="contribua">
-                    <img src="{% static "img\contribua.png" %}">
+                    <img src="{% static "img\Money.png" %}">
                     <h3>Contribua</h3>
-                    <p>Forneça ajuda finan-<br/>ceira mensal</p>
+                    <p>Forneça ajuda<br/>financeira mensal</p>
                 </section>
 
                 <section class="acompanhe">
-                    <img src="{% static "img\acompanhe.png" %}">
+                    <img src="{% static "img\Acompanhe.png" %}">
                     <h3>Acompanhe</h3>
                     <p>Veja o progresso da<br/> criança apadrinhada</p>
                 </section>
             </section>
         </section>
 
+        <section class="container-estatisticas">
+            <section class="estatisticas">
+                <canvas id="myChart"></canvas>
+            </section>
+
+            {{ labels|json_script:"chart-labels" }}
+            {{ data|json_script:"chart-data" }}
+
+
+            <section class="descricao-stats">
+                <h1>Seja a parte que falta</h1>
+                <p>O Instituto Solidare está sempre crescendo para auxiliar cada vez mais
+                    o <b>desenvolvimento sociocultural</b> de crianças vulneráveis.</p>
+                   <p> Através de uma quantia simbólica, você pode mudar a vida de nossas crianças.<br><br>
+                    O que está esperando?<br>
+                    <b>Crie um laço e transforme vidas!</b>
+                   </p>
+
+                                 
+                <a href="{% url 'pagina_exibicao' %}"><button>Torne-se padrinho</button></a>
+            </section>
+        </section>
         
         <section id="sobre">
         <section class="sobre-pai">
@@ -68,7 +93,7 @@
                 </section>
         
                 <section class="img-apadrinhamento">
-                    <img src="{% static 'img/logo-solidare.png' %}" class="img-crianca">   
+                    <img src="{% static 'img/icone-solidare.png' %}" class="img-crianca">   
                 </section>
             </section>
         </section>
@@ -85,6 +110,11 @@
                 <img src="{% static "img\instagram.png" %}">
             </section>
         </section>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+        <script src="{% static 'js/estatisticas.js' %}"></script>
     </main>
 
 </body>

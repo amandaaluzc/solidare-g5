@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento</title>
+    <link rel="stylesheet" href="{% static 'styles/pagina_pagamento.css' %}">
+</head>
+
+<body>
+    {% include "partials/header.html" %}
+    <div class="container">
+    <h1>Pagamento</h1>
+    <form class="payment-form" onsubmit="event.preventDefault(); abrirModal();">
+      <div class="form-group">
+        <label for="nome">Nome do titular do cartão</label>
+        <input type="text" id="nome" placeholder="Digite o nome como está no cartão">
+      </div>
+      <div class="form-group">
+        <label for="numero">Número do cartão</label>
+        <input type="text" id="numero" placeholder="____ ____ ____ ____">
+      </div>
+      <div class="form-group">
+        <label for="validade">Data de vencimento</label>
+        <input type="text" id="validade" placeholder="MM/AAAA">
+      </div>
+      <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" placeholder="XXX">
+      </div>
+      <div class="form-group full-width">
+        <label for="valor">Valor</label>
+        <input type="text" id="valor" placeholder="R$ XXXX,XX" disabled>
+      </div>
+      <div class="form-actions full-width">
+        <button type="submit" class="btn-confirmar">Pagar agora</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="modal-confirmacao" class="modal hidden">
+    <div class="modal-content">
+      <h2>Confirmar Pagamento</h2>
+      <p>Você realmente deseja efetuar este pagamento?</p>
+      <div class="botoes-confirmacao">
+        <form id="form-pagamento" action="{% url 'apadrinhar_crianca' crianca.id %}" method="post" onsubmit="return confirmarApadrinhamento()">
+          {% csrf_token %}
+          <button type="submit" class="btn-confirmar">Sim</button>
+        </form>
+        <button class="btn-nao" onclick="fecharModal()">Não</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    const redirecionar = "{% url 'pagina_exibicao' %}";
+
+    function abrirModal() {
+      document.getElementById('modal-confirmacao').classList.remove('hidden');
+    }
+
+    function fecharModal() {
+      document.getElementById('modal-confirmacao').classList.add('hidden');
+    }
+
+      function confirmarApadrinhamento() {
+    alert("Criança apadrinhada com sucesso!");
+    return true;
+  }
+  </script>
+</body>
+</html>
